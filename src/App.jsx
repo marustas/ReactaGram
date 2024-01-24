@@ -1,10 +1,7 @@
-import { useState } from "react";
-import "./GlobalStyles.css";
+// import "./GlobalStyles.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div>{count}</div>;
+  return <p className="text-5xl font-bold font-weight">Hello App</p>;
 }
 
 export default App;
