@@ -1,8 +1,10 @@
 import React from "react";
 import Form from "../ui/Form";
 import FormRowVertical from "../ui/FormRowVertical";
+import Loader from "../ui/Loader";
 
 const SignIn = () => {
+  const isLoading = false;
   return (
     <div>
       <div className="flex-center flex-col sm:w-420">
@@ -13,8 +15,13 @@ const SignIn = () => {
         </p>
       </div>
       <Form>
-        <FormRowVertical input="username" label="Username"></FormRowVertical>
-        <FormRowVertical input="password" label="Password"></FormRowVertical>
+        <FormRowVertical input="username" label="Username"/>
+        <FormRowVertical input="password" label="Password"/>
+        <button type="submit" className=" flex-center rounded-md px-3 py-2 shad-button_primary">{
+      isLoading ? <div className="flex-center gap-2">
+        <Loader/>
+        Loading...
+        </div>  : "Sign In"}</button>
       </Form>
     </div>
   );
