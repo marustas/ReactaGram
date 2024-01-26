@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async () => {
+    // const newUser = await createUser();
     setIsLoading(true);
 
     setIsLoading(false);
