@@ -3,10 +3,12 @@ import FormRowVertical from "../ui/FormRowVertical";
 import Form from "../ui/Form";
 import Loader from "../ui/Loader";
 import { Link } from "react-router-dom";
+import { useSignUp } from "../hooks/useSignUp";
 
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
-  
+  const {isSigningUp, singUp} = useSignUp();
+
   const handleSubmit = async () => {
     // const newUser = await createUser();
     setIsLoading(true);
@@ -27,7 +29,7 @@ const SignUp = () => {
       <FormRowVertical input="username" label="Username"/>
       <FormRowVertical input="email" label="Email"/>
       <FormRowVertical input="password" label="Password"/>
-      <button onSubmit={handleSubmit} type="submit" className=" flex-center rounded-md px-3 py-2 shad-button_primary">{
+      <button type="submit" className=" flex-center rounded-md px-3 py-2 shad-button_primary">{
       isLoading ? <div className="flex-center gap-2">
         <Loader/>
         Loading...
