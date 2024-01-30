@@ -1,12 +1,13 @@
 import "./GlobalStyles.css";
 import { Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
+import { RxCross2 } from "react-icons/rx";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import AuthLayout from "./pages/AuthLayout";
-import toast, { ToastBar, Toaster } from "react-hot-toast";
-import { RxCross2 } from "react-icons/rx";
+
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
 });
@@ -46,9 +47,9 @@ const App = () => {
                   {icon}
                   {message}
                   {t.type !== "loading" && (
-                    <CloseToastButton onClick={() => toast.dismiss(t.id)}>
+                    <button className="rounded-md border-none h-full" onClick={() => toast.dismiss(t.id)}>
                       <RxCross2 />
-                    </CloseToastButton>
+                    </button>
                   )}
                 </>
               )}

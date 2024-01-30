@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { signIn as signInApi } from "../services/apiAuth";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function useSignIn() {
     const queryClient = useQueryClient();
@@ -11,7 +12,7 @@ export function useSignIn() {
             navigate('/');
             queryClient.setQueryData(['user'], user.user)
         },
-        onError: () => { console.log('There was an error logging in') }
+        onError: () => { toast.error('There was an error logging in. Please try again.')}
     })
     return { isSigningIn, signIn };
 }
