@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { useSignIn } from "../hooks/useSignIn";
 import Form from "../ui/Form";
 import FormRowVertical from "../ui/FormRowVertical";
 import Loader from "../ui/Loader";
-import { useSignIn } from "../hooks/useSignIn";
 
 const SignIn = () => {
   const {isSigningIn, signIn} = useSignIn();
@@ -38,9 +38,9 @@ const SignIn = () => {
         <input onChange={(e) => setEmail(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="email" id="email" type="text" disabled = {isSigningIn} />
       </FormRowVertical>
       <FormRowVertical label="Password">
-        <input onChange={(e) => setPassword(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="password" id="password" type="text" disabled = {isSigningIn} />
+        <input onChange={(e) => setPassword(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="password" id="password" type="password" disabled = {isSigningIn} />
       </FormRowVertical>
-        <button type="submit" className=" flex-center rounded-md px-3 py-2 shad-button_primary">{
+        <button className=" flex-center rounded-md px-3 py-2 shad-button_primary">{
       isSigningIn ? <div className="flex-center gap-2">
         <Loader/>
         Loading...
