@@ -11,8 +11,8 @@ const SignUp = () => {
 
   const {isSigningUp, signUp} = useSignUp();
 
-  function onSubmit({ username, email, password }) {
-    signUp({ username, email, password }, { onSettled: () => reset() });
+  function onSubmit({ email, password, username }) {
+    signUp({ email, password, username }, { onSettled: () => reset() });
   }
 
   return (

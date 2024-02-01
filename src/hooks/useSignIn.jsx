@@ -10,7 +10,8 @@ export function useSignIn() {
         mutationFn: ({ email, password }) => signInApi({ email, password }),
         onSuccess: (user) => {
             navigate('/');
-            queryClient.setQueryData(['user'], user.user)
+            queryClient.setQueryData(['user'], user.user);
+            console.log(user.user);
         },
         onError: () => { toast.error('There was an error logging in. Please try again.')}
     })
