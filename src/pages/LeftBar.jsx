@@ -2,11 +2,14 @@ import React from 'react'
 import { Link, useLocation, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
 import { sidebarLinks } from '../const';
+import { useSignOut } from '../hooks/useSignOut';
 
 const LeftBar = () => {
   const {user} = useUser();
   const {username} = user.user_metadata;
   const {pathname} = useLocation();
+  const {isSigningOut, signOut} = useSignOut();
+
   return (
     <nav className='leftsidebar'>
       <div className='flex flex-col gap-11'>
@@ -24,14 +27,20 @@ const LeftBar = () => {
           {sidebarLinks.map((link) => {
           const isActive = pathname === link.route;
           return(
-          <li className={`leftsidebar-link ${isActive && 'bg-primary-500'}`} key={link.label}>
+          <li className={`leftsidebar-link group ${isActive && 'bg-primary-500'}`} key={link.label}>
               <NavLink className='flex gap-4 items-center p-4'  to = {link.route}>
-                <img className='group-hover:invert-white' src = {link.imgURL} alt = {link.label}/>
+                <img className={`group-hover:invert-white ${isActive && 'invert-white'}`} src = {link.imgURL} alt = {link.label}/>
                 {link.label}
               </NavLink>
-          </li>)})}
-      </ul>
+          </li>
+          )
+        })}
+        </ul>
       </div>
+      <button disabled={isSigningOut} onClick={signOut} className='px-4 shad-button_ghost'>
+        <img alt = "logout" src = "../assets/icons/logout.svg"/>
+        <p className='small-medium lg:base-medium'>Logout</p>
+      </button>
     </nav>
   )
 }
