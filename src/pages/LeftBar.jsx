@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
+import LinkList from '../ui/LinkList';
+import { sidebarLinks } from '../const';
 
 const LeftBar = () => {
   const {user} = useUser();
@@ -18,11 +20,7 @@ const LeftBar = () => {
           <p className='small-regular text-light-3'>@{username}</p>
         </div>
         </Link>
-        <ul className='flex flex-col gap-6'>
-          <Link></Link>
-          <Link></Link>
-          <Link></Link>
-        </ul>
+        <LinkList className="flex flex-col gap-6" links={sidebarLinks}/>
       </div>
     </nav>
   )
