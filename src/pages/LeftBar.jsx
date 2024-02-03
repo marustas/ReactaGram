@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
-import LinkList from '../ui/LinkList';
 import { sidebarLinks } from '../const';
 
 const LeftBar = () => {
   const {user} = useUser();
   const {username} = user.user_metadata;
+  const {pathname} = useLocation();
   return (
     <nav className='leftsidebar'>
       <div className='flex flex-col gap-11'>
@@ -20,7 +20,17 @@ const LeftBar = () => {
           <p className='small-regular text-light-3'>@{username}</p>
         </div>
         </Link>
-        <LinkList className="flex flex-col gap-6" links={sidebarLinks}/>
+        <ul className="flex flex-col gap-6">
+          {sidebarLinks.map((link) => {
+          const isActive = pathname === link.route;
+          return(
+          <li className={`leftsidebar-link ${isActive && 'bg-primary-500'}`} key={link.label}>
+              <NavLink className='flex gap-4 items-center p-4'  to = {link.route}>
+                <img className='group-hover:invert-white' src = {link.imgURL} alt = {link.label}/>
+                {link.label}
+              </NavLink>
+          </li>)})}
+      </ul>
       </div>
     </nav>
   )
