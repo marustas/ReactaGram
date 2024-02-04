@@ -7,6 +7,7 @@ import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import AuthLayout from "./pages/AuthLayout";
+import RootLayout from "./pages/RootLayout";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -21,7 +22,10 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Route>
-        <Route path="/" index element={<Home />} />
+
+        <Route element={<RootLayout />}>
+          <Route index element={<Home />} />
+        </Route>
       </Routes>
     </div>
     <Toaster
