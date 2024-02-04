@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Route>
-        <Route index path="/" element={<Home />} />
+        <Route path="/" index element={<Home />} />
       </Routes>
     </div>
     <Toaster
