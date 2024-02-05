@@ -35,10 +35,10 @@ const SignIn = () => {
       </div>
       <Form onSubmit={handleSubmit}>
       <FormRowVertical label="Email">
-        <input onChange={(e) => setEmail(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="email" id="email" type="text" disabled = {isSigningIn} />
+        <input value={email} onChange={(e) => setEmail(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="email" id="email" type="text" disabled = {isSigningIn} />
       </FormRowVertical>
       <FormRowVertical label="Password">
-        <input onChange={(e) => setPassword(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="password" id="password" type="password" disabled = {isSigningIn} />
+        <input value={password} onChange={(e) => setPassword(e.target.value)} className="shad-input rounded-md px-3 py-2" placeholder="password" id="password" type="password" disabled = {isSigningIn} />
       </FormRowVertical>
         <button className=" flex-center rounded-md px-3 py-2 shad-button_primary">{
       isSigningIn ? <div className="flex-center gap-2">

@@ -6,7 +6,7 @@ import { useUser } from '../hooks/useUser';
 const TopBar = () => {
   const {isSigningOut, signOut} = useSignOut();
   const {user} = useUser();
-  const {username} = user ? user.user_metadata : '';
+  const {username} = user.user_metadata;
   
   return (
     <section className='topbar'>
