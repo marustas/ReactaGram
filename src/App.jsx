@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import AuthLayout from "./pages/AuthLayout";
 import RootLayout from "./pages/RootLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -26,6 +27,14 @@ const App = () => {
               }
             >
           <Route index element={<Home />} />
+          {/* <Route path="/explore" element={<Explore />} />
+          <Route path="/saved" element={<Saved />} />
+          <Route path="/all-users" element={<AllUsers />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/update-post" element={<UpdatePost />} />
+          <Route path="/posts/:id" element={<PostDetails />} /> */}
+          <Route path="/profile/:id" element={<Profile />} />
+          {/* <Route path="/update-profile/:user" element={<UpdateProfile />} /> */}
         </Route>
         
         <Route index element={<Home />} />

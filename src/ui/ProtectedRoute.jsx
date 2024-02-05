@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
     function () {
       if (!isAuthenticated) navigate("/sign-up");
     },
-    [isAuthenticated, isLoading, navigate]
+    [isAuthenticated, navigate]
   );
 
   if (isLoading) {
