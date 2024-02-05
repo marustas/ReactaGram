@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import AuthLayout from "./pages/AuthLayout";
 import RootLayout from "./pages/RootLayout";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -18,13 +19,19 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
     <div className="flex h-screen">
       <Routes>
-        <Route element={<AuthLayout />}>
+        <Route 
+          element={<ProtectedRoute>
+                  <RootLayout />
+                </ProtectedRoute>
+              }
+            >
+          <Route index element={<Home />} />
+        </Route>
+        
+        <Route index element={<Home />} />
+        <Route element={<AuthLayout />} >
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-        </Route>
-
-        <Route element={<RootLayout />}>
-          <Route index element={<Home />} />
         </Route>
       </Routes>
     </div>

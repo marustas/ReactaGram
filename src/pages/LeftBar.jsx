@@ -5,8 +5,8 @@ import { sidebarLinks } from '../const';
 import { useSignOut } from '../hooks/useSignOut';
 
 const LeftBar = () => {
-  const {user} = useUser();
-  const {username} = user.user_metadata;
+  const {user, isAuthenticated} = useUser();
+  const {username} = user ? user.user_metadata : "";
   const {pathname} = useLocation();
   const {isSigningOut, signOut} = useSignOut();
 
