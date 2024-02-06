@@ -23,6 +23,7 @@ const LeftBar = () => {
           <p className='small-regular text-light-3'>@{username}</p>
         </div>
         </Link>
+        
         <ul className="flex flex-col gap-6">
           {sidebarLinks.map((link) => {
           const isActive = pathname === link.route;
