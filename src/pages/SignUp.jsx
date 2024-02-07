@@ -37,7 +37,7 @@ const SignUp = () => {
       <FormRowVertical label="Password">
         <input className="shad-input rounded-md px-3 py-2" placeholder="password" id="password" type="password" disabled = {isSigningUp} {...register("password")}/>
       </FormRowVertical>
-      <button className="flex-center rounded-md px-3 py-2 shad-button_primary">{
+      <button className="flex-center rounded-md px-3 py-2 mt-2 shad-button_primary">{
       isSigningUp ? 
         <div className="flex-center gap-2">
           <Loader/>
