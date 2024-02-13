@@ -1,7 +1,7 @@
 import React from 'react'
 import FileUploader from './FileUploader'
 
-const PostForm = () => {
+const PostForm = ({post}) => {
   return (
     <form className='flex flex-col gap-9 w-full max-w-5xl'>
       <div className='flex flex-col gap-2 py-1.5'>
@@ -14,7 +14,7 @@ const PostForm = () => {
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label>Post image</label>
-        <FileUploader/>
+        <FileUploader fieldChange={[]} mediaUrl = {post?.imageUrl}/>
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label className='shad-form_label'>Add location</label>

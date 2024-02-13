@@ -1,13 +1,17 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 
-const FileUploader = () => {
+const FileUploader = ({fieldChange, mediaUrl}) => {
   const [fileUrl, setFileUrl] = useState('');
+  const [file, setFile] = useState([]);
 
   const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
-  }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+    setFile(acceptedFiles);
+    fieldChange(acceptedFiles);
+    setFileUrl(URL.createObjectURL(acceptedFiles[0]));
+
+  }, [fieldChange])
+  const {getRootProps, getInputProps} = useDropzone({onDrop, accept:{"image/*": ['.png', '.jpg', '.jpeg', '.svg',]}});
   return (
     <div className='flex flex-center flex-col bg-dark-3 rounded-xl cursor-pointer' {...getRootProps()}>
       <input className='cursor-pointer' {...getInputProps()} />
