@@ -7,19 +7,23 @@ const FileUploader = ({fieldChange, mediaUrl}) => {
 
   const onDrop = useCallback(acceptedFiles => {
     setFile(acceptedFiles);
-    fieldChange(acceptedFiles);
+    fieldChange = acceptedFiles;
     setFileUrl(URL.createObjectURL(acceptedFiles[0]));
 
   }, [fieldChange])
+
   const {getRootProps, getInputProps} = useDropzone({onDrop, accept:{"image/*": ['.png', '.jpg', '.jpeg', '.svg',]}});
   return (
     <div className='flex flex-center flex-col bg-dark-3 rounded-xl cursor-pointer' {...getRootProps()}>
       <input className='cursor-pointer' {...getInputProps()} />
       {
         fileUrl ? (
-           <div>
-
-           </div> ) : (
+          <>
+           <div className='flex flex-1 justify-center w-full p-5 lg:p-10'>
+              <img className='file_uploader-img' alt="uploaded-file" src={fileUrl}/>
+           </div> 
+           <p className='file_uploader-label'>Click or drag photo to replace</p>
+           </>) : (
            <div className='file_uploader-box'>
             <img width={96} height={77} alt="upload-icon" src='../assets/icons/file-upload.svg'/>
             <h3 className='base-medium mb-2 mt-6 text-light-2'>Drag photo here</h3>
