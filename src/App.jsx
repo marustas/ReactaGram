@@ -40,8 +40,8 @@ const App = () => {
         
         <Route index element={<Home />} />
         <Route element={<AuthLayout />} >
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
         </Route>
       </Routes>
     </div>

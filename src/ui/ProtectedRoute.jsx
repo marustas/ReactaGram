@@ -10,14 +10,16 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(
     function () {
-      if (!isAuthenticated) navigate("/sign-up");
+      if (!isAuthenticated && isLoading) navigate("/sign-up");
     },
-    [isAuthenticated, navigate]
+    [isAuthenticated, navigate, isLoading]
   );
 
   if (isLoading) {
     return (
+      <div className="h-full flex items-center">
         <Loader/>
+      </div>
     );
   }
 
