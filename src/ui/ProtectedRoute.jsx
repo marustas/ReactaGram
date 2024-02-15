@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center">
+      <div className="h-[100vh] flex items-center justify-center bg-slate-400">
         <Loader/>
       </div>
     );
