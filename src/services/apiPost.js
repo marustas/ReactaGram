@@ -1,6 +1,8 @@
 import supabase from "./supabase";
 
 export async function createPost(post) {
+    // change tby adding postImage to the props and the creating the name and link to the image in the bucket inside rthis function
+    // then updatae the passed post and insert the updated post into the table
     const { data } = await supabase.from('posts').insert([{...post }]).select();
     return data;
 }

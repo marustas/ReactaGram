@@ -37,7 +37,7 @@ const PostForm = ({post}) => {
       toast.error('Please try again')
      }
      /*
-     Need to edit the FileUpload, to get access to the mediaurl
+     Create a useEffect for asynchronously setting the link to the post image
      */
      console.log(newPost);
      createPost(newPost);
