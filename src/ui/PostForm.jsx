@@ -34,9 +34,7 @@ const PostForm = ({post}) => {
       toast.error('Please try again')
      }
      /*
-     Need to setup a table with user id as key,
-     UserName, tags, caption, location, likes and MediaUrl as columns to upload in database
-     Setup a bucket with mediFiles in it
+     Need to edit the FileUpload, to get access to the mediaurl
      */
      console.log(newPost);
      createPost(newPost);

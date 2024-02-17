@@ -13,7 +13,7 @@ export function useCreatePost() {
             navigate('/');
             queryClient.setQueryData(['post'], post);
         },
-        onError: () => { toast.error('There was an creating this post. Please try again.')}
+        onError: () => { toast.error('There was an error creating this post. Please try again.')}
     })
     return { isPosting, createPost };
 }
