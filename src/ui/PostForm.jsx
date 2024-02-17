@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import FileUploader from './FileUploader'
 import { useUser } from '../hooks/useUser';
 import { useCreatePost } from '../hooks/useCreatePost';
+import { createPostImage } from '../services/apiPost';
 
 
 const PostForm = ({post}) => {
@@ -13,22 +14,24 @@ const PostForm = ({post}) => {
   const navigate = useNavigate();
   const {handleSubmit, register } = useForm();
   const {isPosting, createPost} = useCreatePost();
+  const [postImage, setPostImage] = useState(null);
+  const [postImageName, setPostImageName] = useState('');
 
-  const createPostObject = (caption, tags, location, username)=>{
+  const createPostObject = (caption, tags, location, username, mediaUrl, mediaUrlName)=>{
     if(!caption || !tags || !location || !username) return null;
-    
+
     return {
       caption: caption,
       tags: tags,
       location: location,
       username: username,
       likes: 0,
-      mediaUrl: ""
+      mediaUrl: createPostImage(mediaUrl, mediaUrlName)
      }
   }
 
   function onSubmit({caption, tags, location}){
-    const newPost = createPostObject(caption, tags, location, user.user_metadata.username);
+    const newPost = createPostObject(caption, tags, location, user.user_metadata.username, postImage, postImageName);
 
      if(!newPost){
       toast.error('Please try again')
@@ -53,7 +56,7 @@ const PostForm = ({post}) => {
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label>Post image</label>
-        <FileUploader fieldChange={[]} mediaUrl = {post?.imageUrl}/>
+        <FileUploader handleSetPostImageName = {setPostImageName}  handleSetPostImage = {setPostImage} fieldChange={[]} mediaUrl = {post?.imageUrl}/>
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label className='shad-form_label'>Add location</label>

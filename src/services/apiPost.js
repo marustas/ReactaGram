@@ -5,7 +5,8 @@ export async function createPost(post) {
     return data;
 }
 
-export async function createPostMedia(postMedia, postName) {
-    const { data, error } = await supabase.storage.from('media').upload(postName, postMedia);
-    return `tlowlhfarkbljagxmihv.supabase.co/storage/v1/object/public/media/${postName}`;
+export async function createPostImage(postImage, postName) {
+    const postImageName = `post-${postName}-${Math.random()}`;
+    const { data, error } = await supabase.storage.from('media').upload(postImageName, postImage);
+    return `https://tlowlhfarkbljagxmihv.supabase.co/storage/v1/object/public/media/${postImageName}`;
 }
