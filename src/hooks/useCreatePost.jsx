@@ -11,7 +11,7 @@ export function useCreatePost() {
         mutationFn: createPostApi,
         onSuccess: (post) => {
             navigate('/');
-            queryClient.setQueryData(['post'], post);
+            queryClient.invalidateQueries({queryKey: 'recentPosts'})
         },
         onError: () => { toast.error('There was an error creating this post. Please try again.')}
     })

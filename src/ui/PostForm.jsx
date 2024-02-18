@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 
 import FileUploader from './FileUploader'
@@ -11,7 +10,6 @@ import { useCreatePost } from '../hooks/useCreatePost';
 const PostForm = ({post}) => {
   const {user} = useUser();
   const {username} = user.user_metadata;
-  const navigate = useNavigate();
   const {handleSubmit, register } = useForm();
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
@@ -37,7 +35,6 @@ const PostForm = ({post}) => {
       toast.error('Please try again')
      }
      createPost(newPostData);
-     navigate("/");
   } 
 
   return (
