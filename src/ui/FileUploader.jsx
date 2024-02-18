@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 
-const FileUploader = ({fieldChange, handleSetPostImage, handleSetPostImageName}) => {
+const FileUploader = ({fieldChange, handleSetPostImage}) => {
   const [fileUrl, setFileUrl] = useState('');
   const [file, setFile] = useState([]);
 
@@ -10,8 +10,6 @@ const FileUploader = ({fieldChange, handleSetPostImage, handleSetPostImageName})
     fieldChange = acceptedFiles;
     
     handleSetPostImage(acceptedFiles[0]);
-    handleSetPostImageName(acceptedFiles[0].name);
-
     setFileUrl(URL.createObjectURL(acceptedFiles[0]));
 
   }, [fieldChange, file])

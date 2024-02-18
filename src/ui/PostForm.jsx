@@ -6,19 +6,18 @@ import { useForm } from 'react-hook-form';
 import FileUploader from './FileUploader'
 import { useUser } from '../hooks/useUser';
 import { useCreatePost } from '../hooks/useCreatePost';
-import { createPostImage } from '../services/apiPost';
 
 
 const PostForm = ({post}) => {
   const {user} = useUser();
+  const {username} = user.user_metadata;
   const navigate = useNavigate();
   const {handleSubmit, register } = useForm();
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
-  const [postImageName, setPostImageName] = useState('');
 
-  const createPostObject = (caption, tags, location, username, mediaUrl, mediaUrlName)=>{
-    if(!caption || !tags || !location || !username) return null;
+  const createPostObject = (caption, tags, location, username, image)=>{
+    if(!caption || !tags || !location || !username || !image) return null;
 
     return {
       caption: caption,
@@ -26,21 +25,18 @@ const PostForm = ({post}) => {
       location: location,
       username: username,
       likes: 0,
-      mediaUrl: createPostImage(mediaUrl, mediaUrlName)
+      postImage: image,
+      mediaUrl: ""
      }
   }
 
   function onSubmit({caption, tags, location}){
-    const newPost = createPostObject(caption, tags, location, user.user_metadata.username, postImage, postImageName);
+    const newPostData = createPostObject(caption, tags, location, username, postImage);
 
-     if(!newPost){
+     if(!newPostData){
       toast.error('Please try again')
      }
-     /*
-     Create a useEffect for asynchronously setting the link to the post image
-     */
-     console.log(newPost);
-     createPost(newPost);
+     createPost(newPostData);
      navigate("/");
   } 
 
@@ -56,7 +52,7 @@ const PostForm = ({post}) => {
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label>Post image</label>
-        <FileUploader handleSetPostImageName = {setPostImageName}  handleSetPostImage = {setPostImage} fieldChange={[]} mediaUrl = {post?.imageUrl}/>
+        <FileUploader handleSetPostImage = {setPostImage} fieldChange={[]} mediaUrl = {post?.imageUrl}/>
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label className='shad-form_label'>Add location</label>
