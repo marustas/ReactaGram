@@ -10,8 +10,8 @@ export function useSignIn() {
     const { isLoading: isSigningIn, mutate: signIn } = useMutation({
         mutationFn: ({ email, password }) => signInApi({ email, password }),
         onSuccess: (user) => {
-            navigate('/');
             queryClient.setQueryData(['user'], user.user);
+            navigate('/');
         },
         onError: () => { toast.error('There was an error logging in. Please try again.')}
     })

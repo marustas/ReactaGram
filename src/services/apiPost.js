@@ -13,3 +13,7 @@ export async function createPost(postData) {
     if (error) throw new Error(error.message);
     return data;
 }
+
+export async function getRecentPosts() {
+
+}
