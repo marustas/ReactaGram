@@ -16,4 +16,9 @@ export async function createPost(postData) {
 
 export async function getRecentPosts() {
 
+    const { data: recentPosts, error } = await supabase.from('posts').select('*').order('created_at', { ascending: false });
+
+    if (error) throw new Error(error.message);
+    return recentPosts;
+
 }

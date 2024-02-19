@@ -8,6 +8,5 @@ export function useLoadPosts(){
     })
 
     if(error) throw new Error('There was an error loading the recent posts');
-
     return {isPostLoading, posts};
 }
