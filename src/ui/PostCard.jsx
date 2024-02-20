@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../services/utils'
+import { formatDate, formatTags } from '../services/utils'
 import { useUser } from '../hooks/useUser';
 
 const PostCard = ({post}) => {
-    // Need to format the user into a Context to follow DRY principles
-    //Also add a function to utils for formatting the tags into an array of strings
+    // Need to format the user into a Context to follow DRY principlesf
     const {user} = useUser();
     const {username : currentUser} = user.user_metadata;
+    const tags = formatTags(post.tags);
 
   return (
     <li className='post-card'>
@@ -25,15 +25,15 @@ const PostCard = ({post}) => {
                     </div>
                 </div>
             </div>
-            <Link className={post.username !== currentUser ? 'hidden' : ''} to ={`/update-post/${post.id}`}>
+            <Link className={post.username !== currentUser && 'hidden'} to ={`/update-post/${post.id}`}>
                 <img alt='edit' width={20} height={20} src='../assets/icons/edit.svg'/>
             </Link>
         </div>
         <Link to = {`/posts/${post.id}`}>
-            <div className='small-medium lb:base-medium py-5'>
+            <div className='small-medium lg:base-medium py-5'>
                 <p>{post.caption}</p>
                 <ul className='flex gap-1 mt-2'>
-                    {post.tags.map((tag) => (
+                    {tags.map((tag) => (
                     <li className='text-light-3' key={tag}>
                         #{tag}
                     </li> 

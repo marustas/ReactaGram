@@ -17,3 +17,8 @@ export function formatDate(dateString) {
         return `${roundedDifference} days ago`;
     }
 }
+
+export function formatTags(inputString) {
+    const separatedArray = inputString.split(',').map(item => item.trim());
+    return separatedArray;
+}
