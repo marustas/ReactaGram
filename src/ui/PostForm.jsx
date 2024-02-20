@@ -14,8 +14,8 @@ const PostForm = ({post}) => {
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
 
-  const createPostObject = (caption, tags, location, username, image)=>{
-    if(!caption || !tags || !location || !username || !image) return null;
+  const createPostObject = (caption, tags, location, username, image, userID)=>{
+    if(!caption || !tags || !location || !username || !image || !userID) return null;
 
     return {
       caption: caption,
@@ -24,12 +24,13 @@ const PostForm = ({post}) => {
       username: username,
       likes: 0,
       postImage: image,
-      mediaUrl: ""
+      mediaUrl: "",
+      userID: userID
      }
   }
 
   function onSubmit({caption, tags, location}){
-    const newPostData = createPostObject(caption, tags, location, username, postImage);
+    const newPostData = createPostObject(caption, tags, location, username, postImage, user.id);
 
      if(!newPostData){
       toast.error('Please try again')
