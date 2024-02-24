@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate, formatTags } from '../services/utils'
 import { useUser } from '../hooks/useUser';
+import PostStats from './PostStats';
 
 const PostCard = ({post}) => {
     // Need to format the user into a Context to follow DRY principlesf
@@ -26,7 +27,7 @@ const PostCard = ({post}) => {
                 </div>
             </div>
             <Link className={post.username !== currentUser && 'hidden'} to ={`/update-post/${post.id}`}>
-                <img alt='edit' width={20} height={20} src='../assets/icons/edit.svg'/>
+                <img alt='edit' width={25} height={25} src='../assets/icons/edit.svg'/>
             </Link>
         </div>
         <Link to = {`/posts/${post.id}`}>
@@ -42,6 +43,7 @@ const PostCard = ({post}) => {
             </div>
             <img className='post-card_img' src = {post.mediaUrl || '../assets/icons/profile-placeholder.svg'} alt='post'/>
         </Link>
+        <PostStats post = {post}/>
     </li>
   )
 }
