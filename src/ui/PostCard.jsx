@@ -26,7 +26,7 @@ const PostCard = ({post}) => {
                     </div>
                 </div>
             </div>
-            <Link className={post.username !== currentUser && 'hidden'} to ={`/update-post/${post.id}`}>
+            <Link className={post.username !== currentUser ? 'hidden' : ''} to ={`/update-post/${post.id}`}>
                 <img alt='edit' width={25} height={25} src='../assets/icons/edit.svg'/>
             </Link>
         </div>
