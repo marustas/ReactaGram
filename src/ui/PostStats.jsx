@@ -7,11 +7,14 @@ const PostStats = ({post}) => {
   const [currentLikes, setCurrentLikes] = useState(post.likes);
   const {isLiking, likePost} = useLikePost();
 
-  function handleLikeClick(e){
+  function handleLikeClick(e) {
     e.stopPropagation();
+    let newLikes = currentLikes;
+    newLikes++;
     setLiked((liked)=>!liked);
-    setCurrentLikes((likes)=>likes+1);
-//Need to insert an array of users who liked it into a table. And check if the user liked or not
+    setCurrentLikes(newLikes);
+    likePost({id: post.id, likes: newLikes});
+    // Need to insert an array of users who liked it into a table. And check if the user liked or not
   }
 
   function handleSavedClick(){

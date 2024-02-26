@@ -6,7 +6,7 @@ export function useLikePost() {
     const queryClient = useQueryClient();
     
     const { isLoading: isLiking, mutate: likePost } = useMutation({
-        mutationFn:(id, likes)=> {likePostApi(id,likes)},
+        mutationFn:(id, likes)=> {likePostApi(id,likes);},
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ['recentPosts']})
         },
