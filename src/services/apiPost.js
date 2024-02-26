@@ -22,3 +22,10 @@ export async function getRecentPosts() {
     return recentPosts;
 
 }
+
+export async function likePost(id, currentLikes) {
+    const { data, error } = await supabase.from('posts').update({ 'likes': currentLikes }).eq('id', id).select()
+    if (error) throw new Error('There was an error liking this post. Please try again');
+
+    return data;
+}
