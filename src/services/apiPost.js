@@ -29,3 +29,10 @@ export async function likePost(id, currentLikes) {
 
     return data;
 }
+
+export async function savePost(id, saved) {
+    const { data, error } = await supabase.from('posts').update({ 'saved': saved }).eq('id', id).select()
+    if (error) throw new Error('There was an error saving this post. Please try again');
+
+    return data;
+}
