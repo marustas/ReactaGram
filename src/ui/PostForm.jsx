@@ -25,7 +25,8 @@ const PostForm = ({post}) => {
       likes: 0,
       postImage: image,
       mediaUrl: "",
-      userID: userID
+      userID: userID,
+      saved: false
      }
   }
 

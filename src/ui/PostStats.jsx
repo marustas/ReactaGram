@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
+import { useLikePost } from '../hooks/useLikePost';
 
 const PostStats = ({post}) => {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
   const [currentLikes, setCurrentLikes] = useState(post.likes);
+  const {isLiking, likePost} = useLikePost();
 
-  function handleLikeClick(){
-    setLiked((liked)=>!liked)
+  function handleLikeClick(e){
+    e.stopPropagation();
+    setLiked((liked)=>!liked);
     setCurrentLikes((likes)=>likes+1);
+//Need to insert an array of users who liked it into a table. And check if the user liked or not
   }
 
   function handleSavedClick(){
-    setSaved((saved)=>!saved)
+    setSaved((saved)=>!saved);
   }
 
   return (

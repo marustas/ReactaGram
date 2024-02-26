@@ -9,9 +9,9 @@ export function useCreatePost() {
     
     const { isLoading: isPosting, mutate: createPost } = useMutation({
         mutationFn: createPostApi,
-        onSuccess: (post) => {
+        onSuccess: () => {
             navigate('/');
-            queryClient.invalidateQueries({queryKey: 'recentPosts'})
+            queryClient.invalidateQueries({queryKey: ['recentPosts']})
         },
         onError: () => { toast.error('There was an error creating this post. Please try again.')}
     })
