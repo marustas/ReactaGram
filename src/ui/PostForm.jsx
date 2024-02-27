@@ -22,7 +22,7 @@ const PostForm = ({post}) => {
       tags: tags,
       location: location,
       username: username,
-      likes: 0,
+      likes: [],
       postImage: image,
       mediaUrl: "",
       userID: userID,
