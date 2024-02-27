@@ -15,7 +15,6 @@ const PostStats = ({post}) => {
 
   function handleLikeClick(e) {
     e.stopPropagation();
-    console.log(currentLikes);
     let newLikes = [...currentLikes];
     const hasLiked = newLikes.includes(username);
     if (hasLiked) {
@@ -25,7 +24,6 @@ const PostStats = ({post}) => {
     }
     setCurrentLikes(newLikes);
     likePost({id: post.id, likes: newLikes});
-    // Need to insert an array of users who liked it into a table. And check if the user liked or not
   }
 
   function handleSavedClick(){
