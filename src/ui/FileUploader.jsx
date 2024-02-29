@@ -1,18 +1,14 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 
-const FileUploader = ({fieldChange, handleSetPostImage}) => {
+const FileUploader = ({ handleSetPostImage}) => {
   const [fileUrl, setFileUrl] = useState('');
-  const [file, setFile] = useState([]);
 
   const onDrop = useCallback(acceptedFiles => {
-    setFile(acceptedFiles);
-    fieldChange = acceptedFiles;
-    
     handleSetPostImage(acceptedFiles[0]);
     setFileUrl(URL.createObjectURL(acceptedFiles[0]));
 
-  }, [fieldChange, file])
+  }, [handleSetPostImage])
 
   const {getRootProps, getInputProps} = useDropzone({onDrop, accept:{"image/*": ['.png', '.jpg', '.jpeg', '.svg',]}});
   

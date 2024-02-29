@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import toast from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 
-import FileUploader from './FileUploader'
+import FileUploader from './FileUploader';
+import Loader from "../ui/Loader";
 import { useUser } from '../hooks/useUser';
 import { useCreatePost } from '../hooks/useCreatePost';
 
@@ -26,18 +26,17 @@ const PostForm = ({post}) => {
       postImage: image,
       mediaUrl: "",
       userID: userID,
-      saved: false
+      saved: []
      }
   }
 
   function onSubmit({caption, tags, location}){
     const newPostData = createPostObject(caption, tags, location, username, postImage, user.id);
 
-     if(!newPostData){
-      toast.error('Please try again')
-     }
+     if(!newPostData) return;
      createPost(newPostData);
   } 
+  if(isPosting) return <div className='w-full flex items-center justify-center'><Loader/></div>;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-9 w-full max-w-5xl'>
@@ -51,7 +50,7 @@ const PostForm = ({post}) => {
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label>Post image</label>
-        <FileUploader handleSetPostImage = {setPostImage} fieldChange={[]} mediaUrl = {post?.imageUrl}/>
+        <FileUploader handleSetPostImage = {setPostImage} mediaUrl = {post?.imageUrl}/>
       </div>
       <div className='flex flex-col gap-2 py-1.5'>
         <label className='shad-form_label'>Add location</label>
