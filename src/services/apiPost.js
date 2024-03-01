@@ -36,3 +36,10 @@ export async function savePost(postData) {
 
     return data;
 }
+
+export async function updatePost({ updatedPost }) {
+    const { data, error } = await supabase.from('posts').update({...updatedPost }).eq('id', updatedPost.id).select();
+
+    if (error) throw new Error('This post could not be updated. Please try again.');
+    return data;
+}
