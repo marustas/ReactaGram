@@ -5,6 +5,7 @@ import FileUploader from './FileUploader';
 import Loader from "../ui/Loader";
 import { useUser } from '../hooks/useUser';
 import { useCreatePost } from '../hooks/useCreatePost';
+import { createPostObject } from '../services/utils';
 
 
 const PostForm = ({post}) => {
@@ -13,22 +14,6 @@ const PostForm = ({post}) => {
   const {handleSubmit, register } = useForm();
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
-
-  const createPostObject = (caption, tags, location, username, image, userID)=>{
-    if(!caption || !tags || !location || !username || !image || !userID) return null;
-
-    return {
-      caption: caption,
-      tags: tags,
-      location: location,
-      username: username,
-      likes: [],
-      postImage: image,
-      mediaUrl: "",
-      userID: userID,
-      saved: []
-     }
-  }
 
   function onSubmit({caption, tags, location}){
     const newPostData = createPostObject(caption, tags, location, username, postImage, user.id);

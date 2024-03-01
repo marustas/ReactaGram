@@ -22,3 +22,19 @@ export function formatTags(inputString) {
     const separatedArray = inputString.split(',').map(item => item.trim());
     return separatedArray;
 }
+
+export const createPostObject = (caption, tags, location, username, image, userID) => {
+    if (!caption || !tags || !location || !username || !image || !userID) return null;
+
+    return {
+        caption: caption,
+        tags: tags,
+        location: location,
+        username: username,
+        likes: [],
+        postImage: image,
+        mediaUrl: "",
+        userID: userID,
+        saved: []
+    }
+}
