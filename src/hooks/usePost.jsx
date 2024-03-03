@@ -1,10 +1,14 @@
 import {useQuery } from "@tanstack/react-query";
 import { getPost as getPostApi } from "../services/apiPost";
+import { useParams } from 'react-router-dom';
 
-export function usePost(postID){
-    return useQuery({
-        queryKey: ['post', postID],
-        queryFn: ()=>{ getPostApi(postID) }
-    })
+export function usePost(){
+    const { id } = useParams();
+
+    const {isLoading: isPostLoading, data: post, error} = useQuery({
+        queryKey: ['post', id],
+        queryFn:  ()=>{getPostApi(id)}
+    });
     
+    return {isPostLoading, post, error}
 }

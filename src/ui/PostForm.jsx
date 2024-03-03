@@ -6,6 +6,7 @@ import Loader from "../ui/Loader";
 import { useUser } from '../hooks/useUser';
 import { useCreatePost } from '../hooks/useCreatePost';
 import { createPostObject } from '../services/utils';
+import { useUpdatePost } from '../hooks/useUpdatePost';
 
 
 const PostForm = ({post, action}) => {
@@ -14,12 +15,21 @@ const PostForm = ({post, action}) => {
   const {handleSubmit, register } = useForm();
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
+  const {isUpdating, updatePost} = useUpdatePost();
 
   function onSubmit({caption, tags, location}){
     const newPostData = createPostObject(caption, tags, location, username, postImage, user.id, action);
 
      if(!newPostData) return;
-     createPost(newPostData);
+
+     if(action === 'create'){
+      createPost(newPostData);
+     }
+
+     if(action === 'update'){
+      updatePost(newPostData);
+     }
+
   } 
   if(isPosting) return <div className='w-full flex items-center justify-center'><Loader/></div>;
 

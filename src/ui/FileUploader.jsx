@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 
-const FileUploader = ({ handleSetPostImage}) => {
-  const [fileUrl, setFileUrl] = useState('');
+const FileUploader = ({ handleSetPostImage, mediaUrl}) => {
+  const [fileUrl, setFileUrl] = useState(mediaUrl);
 
   const onDrop = useCallback(acceptedFiles => {
     handleSetPostImage(acceptedFiles[0]);

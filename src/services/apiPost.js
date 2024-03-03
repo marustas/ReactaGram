@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function createPost(postData) {
@@ -54,9 +53,9 @@ export async function updatePost({ updatedPost }) {
 }
 
 export async function getPost(id) {
-    let { data: post, error } = await supabase.from('posts').eq('id', id).select()
+    const { data, error } = await supabase.from('posts').select('*').eq('id', id).single();
 
-    if (error) throw new Error('There was an error loading this Post data');
-
-    return post;
+    if (error) { throw new Error('There was an error loading this Post data') };
+    console.log(data);
+    return data;
 }
