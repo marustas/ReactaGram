@@ -43,7 +43,7 @@ export async function updatePost(updatedPost) {
     if (newPostData.postImage) {
         const postImageName = `post-${newPostData.username}-${Math.random()}`;
         const { error } = await supabase.storage.from('media').upload(postImageName, newPostData.postImage);
-        updatedPost.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
+        newPostData.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
         if (error) throw new Error("No image to upload");
     }
 

@@ -11,7 +11,7 @@ const PostCard = ({post}) => {
     const tags = formatTags(post.tags);
 
   return (
-    <li className='post-card'>
+    <div className='post-card'>
         <div className='flex-between'>
             <div className='flex items-center gap-3'>
                 <Link to={`/profile/${post.userID}`}>
@@ -44,7 +44,7 @@ const PostCard = ({post}) => {
             <img className='post-card_img' src = {post.mediaUrl || '../assets/icons/profile-placeholder.svg'} alt='post'/>
         </Link>
         <PostStats post = {post}/>
-    </li>
+    </div>
   )
 }
 
