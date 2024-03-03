@@ -7,8 +7,8 @@ export function usePost(){
 
     const {isLoading: isPostLoading, data: post, error} = useQuery({
         queryKey: ['post', id],
-        queryFn:  ()=>{getPostApi(id)}
+        queryFn:  ()=> getPostApi(id), retry: false
     });
-    
+
     return {isPostLoading, post, error}
 }

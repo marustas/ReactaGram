@@ -56,6 +56,6 @@ export async function getPost(id) {
     const { data, error } = await supabase.from('posts').select('*').eq('id', id).single();
 
     if (error) { throw new Error('There was an error loading this Post data') };
-    console.log(data);
+
     return data;
 }
