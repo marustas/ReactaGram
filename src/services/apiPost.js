@@ -37,15 +37,17 @@ export async function savePost(postData) {
     return data;
 }
 
-export async function updatePost({ updatedPost }) {
-    if (updatedPost.postImage) {
-        const postImageName = `post-${updatedPost.username}-${Math.random()}`;
-        const { error } = await supabase.storage.from('media').upload(postImageName, updatedPost.postImage);
+export async function updatePost(updatedPost) {
+    console.log(updatedPost);
+    const { newPostData } = updatedPost;
+    if (newPostData.postImage) {
+        const postImageName = `post-${newPostData.username}-${Math.random()}`;
+        const { error } = await supabase.storage.from('media').upload(postImageName, newPostData.postImage);
         updatedPost.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
         if (error) throw new Error("No image to upload");
     }
 
-    const { postImage, ...newPost } = updatedPost;
+    const { postImage, ...newPost } = newPostData;
     const { data, error } = await supabase.from('posts').update({...newPost }).eq('id', updatedPost.id).select();
 
     if (error) throw new Error('This post could not be updated. Please try again.');

@@ -27,7 +27,8 @@ const PostForm = ({post, action}) => {
      }
 
      if(action === 'update'){
-      updatePost(newPostData);
+      console.log(newPostData);
+      updatePost({newPostData, id: post.id});
      }
 
   } 
@@ -37,11 +38,11 @@ const PostForm = ({post, action}) => {
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-9 w-full max-w-5xl'>
         <div className='flex flex-col gap-2 py-1.5'>
           <label className='shad-form_label'>Caption</label>
-          <textarea value={action === 'update' ? post.caption : ''} disabled={isPosting} {...register("caption")} className='px-3 py-2 rounded-md shad-textarea custom-scrollbar' placeholder='Caption'/>
+          <textarea disabled={isPosting || isUpdating} {...register("caption")} className='px-3 py-2 rounded-md shad-textarea custom-scrollbar' placeholder= { action === 'update' ? post.caption : 'Caption'}/>
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label className='shad-form_label'>Add Tags (separated by comma " , ")</label>
-          <input disabled={isPosting}  {...register("tags")} type="text" className='px-3 py-2 rounded-md shad-input' placeholder='Sports, Arts, History'/>
+          <input disabled={isPosting || isUpdating}  {...register("tags")} type="text" className='px-3 py-2 rounded-md shad-input' placeholder = { action === 'update' ? post.tags : 'Sports, Art, History'}/>
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label>Post image</label>
@@ -49,7 +50,7 @@ const PostForm = ({post, action}) => {
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label className='shad-form_label'>Add location</label>
-          <input disabled={isPosting}  {...register("location")} type="text" className='px-3 py-2 rounded-md shad-input' placeholder='Location'/>
+          <input disabled={isPosting || isUpdating}  {...register("location")} type="text" className='px-3 py-2 rounded-md shad-input' placeholder={ action === 'update' ? post.location : 'Location'}/>
         </div>
         <div className='flex gap-4 items-center justify-end'>
           <button className='p-3 rounded-md shad-button_dark_4'>Cancel</button>
