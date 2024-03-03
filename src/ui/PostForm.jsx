@@ -32,6 +32,7 @@ const PostForm = ({post, action}) => {
      }
 
   } 
+  
   if(isPosting) return <div className='w-full flex items-center justify-center'><Loader/></div>;
 
     return (

@@ -47,6 +47,8 @@ export async function updatePost(updatedPost) {
         if (error) throw new Error("No image to upload");
     }
 
+    if (!newPostData.caption && !newPostData.location && !newPostData.tags) return;
+
     const { postImage, ...newPost } = newPostData;
     const { data, error } = await supabase.from('posts').update({...newPost }).eq('id', updatedPost.id).select();
 
