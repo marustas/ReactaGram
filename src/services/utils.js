@@ -23,18 +23,31 @@ export function formatTags(inputString) {
     return separatedArray;
 }
 
-export const createPostObject = (caption, tags, location, username, image, userID) => {
-    if (!caption || !tags || !location || !username || !image || !userID) return null;
+export const createPostObject = (caption, tags, location, username, image, userID, action) => {
+    if (action === 'create') {
+        if (!caption || !tags || !location || !username || !image || !userID) return null;
 
-    return {
-        caption: caption,
-        tags: tags,
-        location: location,
-        username: username,
-        likes: [],
-        postImage: image,
-        mediaUrl: "",
-        userID: userID,
-        saved: []
+        return {
+            caption: caption,
+            tags: tags,
+            location: location,
+            username: username,
+            likes: [],
+            postImage: image,
+            mediaUrl: "",
+            userID: userID,
+            saved: []
+        }
     }
+
+    if (action === 'update') {
+        return {
+            caption: caption,
+            tags: tags,
+            location: location,
+            postImage: image,
+            mediaUrl: "",
+        }
+    }
+
 }

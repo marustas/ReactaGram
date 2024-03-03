@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function createPost(postData) {
@@ -38,8 +39,24 @@ export async function savePost(postData) {
 }
 
 export async function updatePost({ updatedPost }) {
-    const { data, error } = await supabase.from('posts').update({...updatedPost }).eq('id', updatedPost.id).select();
+    if (updatedPost.postImage) {
+        const postImageName = `post-${updatedPost.username}-${Math.random()}`;
+        const { error } = await supabase.storage.from('media').upload(postImageName, updatedPost.postImage);
+        updatedPost.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
+        if (error) throw new Error("No image to upload");
+    }
+
+    const { postImage, ...newPost } = updatedPost;
+    const { data, error } = await supabase.from('posts').update({...newPost }).eq('id', updatedPost.id).select();
 
     if (error) throw new Error('This post could not be updated. Please try again.');
     return data;
+}
+
+export async function getPost(id) {
+    let { data: post, error } = await supabase.from('posts').eq('id', id).select()
+
+    if (error) throw new Error('There was an error loading this Post data');
+
+    return post;
 }
