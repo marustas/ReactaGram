@@ -5,7 +5,7 @@ import { usePost } from '../hooks/usePost'
 import { useUser } from '../hooks/useUser';
 import Loader from '../ui/Loader';
 
-import { formatDate } from '../services/utils';
+import { formatDate, formatTags } from '../services/utils';
 import PostStats from '../ui/PostStats';
 
 const PostDetails = () => {
@@ -22,7 +22,7 @@ const PostDetails = () => {
         {isPostLoading ? <Loader/> : 
         (<div className='post_details-card'>
            <img className='post_details-img' alt='post' src={post.mediaUrl} />
-           <div className='psot_detail-info'>
+           <div className='post_details-info'>
                 <div className='flex-between w-full'>
                     <Link className='flex items-center gap-3' to={`/profile/${post?.userID}`}>
                         <img className='rounded-full w-8 h-8 lg:h-12 lg:w-12' alt='creator' src = "../assets/images/profile.png" />
@@ -37,10 +37,10 @@ const PostDetails = () => {
                     </Link>
                     <div className='flex-center gap-1'>
                         <Link className={`${user.user_metadata.username !== post.username && 'hidden'}`} to={`/update-post/${id}`}>
-                            <img width={24} height={24} alt='edit' src='../public/assets/icons/edit.svg'/>
+                            <img width={22} height={22} alt='edit' src='../public/assets/icons/edit.svg'/>
                         </Link>
                         <button className={`ghot_details-delete_btn ${user.user_metadata.username !== post.username && 'hidden'}`} onClick={handleDeletePost}>
-                            <img idth={24} height={24}  alt='edit' src='../public/assets/icons/delete.svg'/>
+                            <img idth={24} height={24}  alt='delete' src='../public/assets/icons/delete.svg'/>
                         </button>
                     </div>
                 </div>
@@ -48,12 +48,12 @@ const PostDetails = () => {
                 <div className='flex flex-col flex-1 w-full small-medium lg:base-regular'>
                     <p>{post?.caption}</p>
                     <ul className='flex gap-1 mt-2'>
-                        {post?.tags.map((tag) => (
-                        <li className='text-light-3' key={tag}>
+                        {formatTags(post.tags).map((tag) => (
+                        <li className='text-light-3 small-regular' key={tag}>
                             #{tag}
                         </li> 
                         ))}
-                    </ul>
+                    </ul> 
                 </div>
                 <div className='w-full'>
                     <PostStats post={post}/>
