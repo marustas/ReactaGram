@@ -7,6 +7,8 @@ import Loader from '../ui/Loader';
 
 import { formatDate, formatTags } from '../services/utils';
 import PostStats from '../ui/PostStats';
+import Modal from '../ui/Modal';
+import ConfirmDelete from '../ui/ConfirmDelete';
 
 const PostDetails = () => {
     const {post, isPostLoading} = usePost();
@@ -39,9 +41,16 @@ const PostDetails = () => {
                         <Link className={`${user.user_metadata.username !== post.username && 'hidden'}`} to={`/update-post/${id}`}>
                             <img width={22} height={22} alt='edit' src='../public/assets/icons/edit.svg'/>
                         </Link>
-                        <button className={`ghot_details-delete_btn ${user.user_metadata.username !== post.username && 'hidden'}`} onClick={handleDeletePost}>
-                            <img idth={24} height={24}  alt='delete' src='../public/assets/icons/delete.svg'/>
-                        </button>
+                        <Modal>
+                            <Modal.Open opens='delete-post'>
+                                <button className={`ghot_details-delete_btn ${user.user_metadata.username !== post.username && 'hidden'}`}>
+                                    <img idth={24} height={24}  alt='delete' src='../public/assets/icons/delete.svg'/>
+                                </button>
+                            </Modal.Open>
+                            <Modal.Window name='delete-post'>
+                                <ConfirmDelete onConfirm = {handleDeletePost}/>
+                            </Modal.Window>
+                        </Modal>
                     </div>
                 </div>
                 <hr className='border border-dark-4/80 w-full'/>
