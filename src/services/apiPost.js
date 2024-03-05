@@ -53,6 +53,7 @@ export async function updatePost(updatedPost) {
     const { data, error } = await supabase.from('posts').update({...newPost }).eq('id', updatedPost.id).select();
 
     if (error) throw new Error('This post could not be updated. Please try again.');
+
     return data;
 }
 
@@ -62,4 +63,18 @@ export async function getPost(id) {
     if (error) { throw new Error('There was an error loading this Post data') };
 
     return data;
+}
+
+export async function getSearchedPosts(searchQuery) {
+    const { data, error } = await supabase.from('posts').select('*').eq('caption', searchQuery);
+
+    if (error) throw new Error('No posts with such caption.');
+
+    return data;
+}
+
+export async function deletePost(id) {
+    const { error } = await supabase.from('posts').delete().eq('id', id);
+
+    if (error) throw new Error('This post could not be deleted');
 }
