@@ -26,7 +26,7 @@ const Window = ({children, name})=>{
     if(name !== openName) return null;
 
     return (
-    <div className='bg-dark-4 fixed top-[50%] left-[50%] rounded-md px-5 py-8'>
+    <div className='bg-dark-4 fixed top-[10%] left-[70%] rounded-md px-5 py-8 gap-2'>
         <button onClick={close}>X</button>
         {children}
     </div> 

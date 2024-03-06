@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 
 import { usePost } from '../hooks/usePost'
 import { useUser } from '../hooks/useUser';
+import { useDeletePost } from '../hooks/useDeletePost';
 import Loader from '../ui/Loader';
 
 import { formatDate, formatTags } from '../services/utils';
@@ -14,9 +15,10 @@ const PostDetails = () => {
     const {post, isPostLoading} = usePost();
     const {id} = useParams();
     const {user} = useUser();
+    const {deletePost, isDeleting} = useDeletePost(id);
 
     function handleDeletePost(){
-
+        deletePost();
     }
 
   return (
@@ -44,11 +46,11 @@ const PostDetails = () => {
                         <Modal>
                             <Modal.Open opens='delete-post'>
                                 <button className={`ghot_details-delete_btn ${user.user_metadata.username !== post.username && 'hidden'}`}>
-                                    <img idth={24} height={24}  alt='delete' src='../public/assets/icons/delete.svg'/>
+                                    <img idth={24} height={24}  alt='delete' src='../assets/icons/delete.svg'/>
                                 </button>
                             </Modal.Open>
                             <Modal.Window name='delete-post'>
-                                <ConfirmDelete onConfirm = {handleDeletePost}/>
+                                <ConfirmDelete disabled = {isDeleting} onConfirm = {handleDeletePost}/>
                             </Modal.Window>
                         </Modal>
                     </div>
