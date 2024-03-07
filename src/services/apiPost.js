@@ -67,8 +67,7 @@ export async function getPost(id) {
 
 export async function getSearchedPosts(searchQuery) {
     const { data, error } = await supabase.from('posts').select('*').eq('caption', searchQuery);
-
-    if (error) throw new Error('No posts with such caption.');
+    if (error) { throw new Error('No posts with such caption.') };
 
     return data;
 }
