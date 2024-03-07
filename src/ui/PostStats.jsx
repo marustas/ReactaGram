@@ -6,7 +6,7 @@ import { useSavePost } from '../hooks/useSavePost';
 const PostStats = ({post}) => {
   const [saved, setSaved] = useState(post.saved);
   const [currentLikes, setCurrentLikes] = useState(post.likes);
-  const { likePost} = useLikePost();
+  const {likePost} = useLikePost();
   const {savePost} = useSavePost();
   const {user} = useUser();
   const {id} = user;
