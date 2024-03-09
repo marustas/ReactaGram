@@ -14,6 +14,7 @@ import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import PostDetails from "./pages/PostDetails";
 import Explore from "./pages/Explore";
+import Saved from "./pages/Saved";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -31,9 +32,9 @@ const App = () => {
               }
             >
           <Route index element={<Home />} />
-          {/* <Route path="/explore" element={<Explore />} />
-          <Route path="/saved" element={<Saved />} />
+          {/*
           <Route path="/all-users" element={<AllUsers />} /> */}
+          <Route path="/saved" element={<Saved />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/posts/:id" element={<PostDetails />} />
           <Route path="/update-post/:id" element={<EditPost />} />

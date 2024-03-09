@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import SearchResults from '../ui/SearchResults';
 import { useSearchPosts } from '../hooks/useSearchPosts';
 import PostList from '../ui/PostList';
@@ -12,9 +12,6 @@ const Explore = () => {
     const {posts, isPostLoading} = useLoadPosts();
     const {searchedPosts, isSearching} = useSearchPosts(debouncedValue);
     const shouldShowPosts = !showSearchResults && posts?.length > 0;
-
-    useEffect(function(){
-    },[isSearching])
 
   return (
     <div className='explore-container'>
