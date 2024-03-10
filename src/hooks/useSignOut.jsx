@@ -9,7 +9,7 @@ export function useSignOut() {
     const { isLoading: isSigningOut, mutate: signOut } = useMutation({
         mutationFn: signOutApi,
         onSuccess: () => {
-            queryClient.removeQueries();
+            queryClient.removeQueries(['user']);
             navigate('/sign-up', {replace: true});
         },
         onError: () => { toast.error('There was an error logging out. Please try again.')}

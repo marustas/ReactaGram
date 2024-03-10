@@ -17,7 +17,7 @@ import Explore from "./pages/Explore";
 import Saved from "./pages/Saved";
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 0 } },
+  defaultOptions: { queries: { staleTime: 600000 } },
 });
 
 const App = () => {
