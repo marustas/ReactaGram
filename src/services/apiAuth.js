@@ -41,3 +41,11 @@ export async function getCurrentUser() {
 
     if (data) return data.user;
 }
+
+export async function getAllUsers() {
+    const { data: { users }, error } = await supabase.auth.admin.listUsers();
+
+    if (error) throw new Error('There was an error loading the users.');
+
+    return users;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import Loader from '../ui/Loader';
 import UserCard from '../ui/UserCard';
+import { useUsers } from '../hooks/useUsers';
 
 const AllUsers = () => {
   //Need to add name and imageUrl to user metadata
@@ -14,7 +15,7 @@ const AllUsers = () => {
         ) : (
           <ul className="user-grid">
             {users?.map((user) => (
-              <li key={user?.$id} className="flex-1 min-w-[200px] w-full  ">
+              <li key={user?.id} className="flex-1 min-w-[200px] w-full  ">
                 <UserCard user={user} />
               </li>
             ))}
