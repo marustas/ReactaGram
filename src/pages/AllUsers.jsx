@@ -6,6 +6,7 @@ import { useUsers } from '../hooks/useUsers';
 const AllUsers = () => {
   //Need to add name and imageUrl to user metadata
   const {users, isLoading} = useUsers();
+  console.log(users);
   return (
 <div className="common-container">
       <div className="user-container">

@@ -15,6 +15,7 @@ import EditPost from "./pages/EditPost";
 import PostDetails from "./pages/PostDetails";
 import Explore from "./pages/Explore";
 import Saved from "./pages/Saved";
+import AllUsers from "./pages/AllUsers";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 600000 } },
@@ -42,7 +43,8 @@ const App = () => {
           <Route path="/profile/:id" element={<Profile />} />
           {/* <Route path="/update-profile/:user" element={<UpdateProfile />} /> */}
         </Route>
-        
+
+        <Route path="/all-users" element={<AllUsers />} />
         <Route index element={<Home />} />
         <Route element={<AuthLayout />} >
           <Route path="sign-in" element={<SignIn />} />
