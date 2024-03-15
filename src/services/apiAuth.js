@@ -1,12 +1,12 @@
 import supabase from "./supabase";
 
-export async function signUp({ email, password, username }) {
-    //Need to add a user to the users table so that I can retrieve them later
+export async function signUp({ email, password, username, name }) {
+
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
         options: {
-            data: { username: username }
+            data: { username: username, name: name }
 
         }
     })
@@ -48,4 +48,11 @@ export async function getAllUsers() {
     if (error) throw new Error('There was an error loading the users.');
 
     return users;
+}
+
+export async function createUser({ username, name, }) {
+    const { data, error } = await supabase.from('users').insert([{ username: username, name: name, }, ]).select()
+    if (error) throw new Error('There was an error enlisting this user.')
+
+    return data;
 }

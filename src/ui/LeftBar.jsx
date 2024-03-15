@@ -6,7 +6,7 @@ import { useSignOut } from '../hooks/useSignOut';
 
 const LeftBar = () => {
   const {user} = useUser();
-  const {username} = user.user_metadata;
+  const {username, name} = user.user_metadata;
   const {pathname} = useLocation();
   const {isSigningOut, signOut} = useSignOut();
 
@@ -19,7 +19,7 @@ const LeftBar = () => {
         <Link to={`/profile/:${user.id}`} className='items-center flex gap-3'>
           <img className='h-14 w-14 rounded-full' alt = "profile" src = "../assets/images/profile.png"/>
           <div className='flex flex-col'>
-          <p className='body-bold'>{username}</p>
+          <p className='body-bold'>{name}</p>
           <p className='small-regular text-light-3'>@{username}</p>
         </div>
         </Link>
