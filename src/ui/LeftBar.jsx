@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation, NavLink } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
 import { sidebarLinks } from '../const';
 import { useSignOut } from '../hooks/useSignOut';
+import { useEnlistUser } from '../hooks/useEnlistUser';
 
 const LeftBar = () => {
   const {user} = useUser();
+  const {isEnlisting, enlist} = useEnlistUser();
   const {username, name} = user.user_metadata;
   const {pathname} = useLocation();
   const {isSigningOut, signOut} = useSignOut();
 
+  useEffect(function(){
+    enlist({username, name})
+  },[enlist, username, name])
+  
   return (
     <nav className='leftsidebar gap-20'>
       <div className='flex flex-col gap-11'>

@@ -19,7 +19,7 @@ const UserCard = ({user}) => {
         </p>
       </div>
 
-      <button type="button" size="sm" className="shad-button_primary px-5">
+      <button type="button" size="sm" className="p-1 rounded-md shad-button_primary px-5">
         Follow
       </button>
     </Link>

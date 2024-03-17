@@ -10,6 +10,7 @@ export async function signUp({ email, password, username, name }) {
 
         }
     })
+
     if (error) throw new Error(error.message);
 
     return data;
@@ -44,15 +45,14 @@ export async function getCurrentUser() {
 }
 
 export async function getAllUsers() {
-    const { data: { users }, error } = await supabase.from('users').select('*');
-    if (error) throw new Error('There was an error loading the users.');
+    const { data: users, error } = await supabase.from('profiles').select('*');
 
+    if (error) throw new Error(error.message);
     return users;
 }
 
-export async function createUser({ username, name, }) {
-    const { data, error } = await supabase.from('users').insert([{ username: username, name: name, }, ]).select()
-    if (error) throw new Error('There was an error enlisting this user.')
-
+export async function createUser(user) {
+    const { data, error } = await supabase.from('profiles').insert([{...user }]).select();
+    if (error) throw new Error(error.message)
     return data;
 }
