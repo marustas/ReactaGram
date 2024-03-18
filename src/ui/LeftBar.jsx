@@ -7,7 +7,7 @@ import { useEnlistUser } from '../hooks/useEnlistUser';
 
 const LeftBar = () => {
   const {user} = useUser();
-  const {isEnlisting, enlist} = useEnlistUser();
+  const {enlist} = useEnlistUser();
   const {username, name} = user.user_metadata;
   const {pathname} = useLocation();
   const {isSigningOut, signOut} = useSignOut();

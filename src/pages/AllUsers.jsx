@@ -2,10 +2,14 @@ import React from 'react'
 import Loader from '../ui/Loader';
 import UserCard from '../ui/UserCard';
 import { useUsers } from '../hooks/useUsers';
+import { useUser } from '../hooks/useUser';
 
 const AllUsers = () => {
-  //Need to add name and imageUrl to user metadata
   const {users, isLoading} = useUsers();
+  const {user} = useUser();
+  const {username: currentUsername} = user.user_metadata;
+  const filteredUsers = users.filter((user)=>user.username !== currentUsername);
+
   return (
      <div className="common-container">
       <div className="user-container">
@@ -14,7 +18,7 @@ const AllUsers = () => {
           <Loader />
         ) : (
           <ul className="user-grid">
-            {users?.map((user) => (
+            {filteredUsers?.map((user) => (
               <li key={user?.id} className="flex-1 min-w-[200px] w-full  ">
                 <UserCard user={user} />
               </li>
