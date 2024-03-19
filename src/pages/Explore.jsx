@@ -4,6 +4,7 @@ import { useSearchPosts } from '../hooks/useSearchPosts';
 import PostList from '../ui/PostList';
 import useDebounce from '../hooks/useDebounce';
 import { useLoadPosts } from '../hooks/useLoadPosts';
+import Loader from '../ui/Loader';
 
 const Explore = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -30,8 +31,9 @@ const Explore = () => {
             </div>
         </div>
         <div className='flex flex-wrap gap-9 w-full max-w-5xl'>
+            {isPostLoading && <Loader/>}
             {showSearchResults ? <SearchResults isSearching ={isSearching} posts={searchedPosts}/> :
-            shouldShowPosts ? <PostList posts={posts}/> : <p className='text-light-4 mt-10 text-center w-full'>End of posts</p>}
+            shouldShowPosts ? <PostList posts={posts}/> : <p className='text-light-4 mt-10 text-center w-full'>No posts</p>}
         </div>
     </div>
   )

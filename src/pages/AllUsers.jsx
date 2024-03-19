@@ -8,7 +8,7 @@ const AllUsers = () => {
   const {users, isLoading} = useUsers();
   const {user} = useUser();
   const {username: currentUsername} = user.user_metadata;
-  const filteredUsers = users.filter((user)=>user.username !== currentUsername);
+  const filteredUsers = users?.filter((user)=>user.username !== currentUsername);
 
   return (
      <div className="common-container">

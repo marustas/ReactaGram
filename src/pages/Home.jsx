@@ -12,9 +12,9 @@ const Home = () => {
         <div className="home-posts">
           <h2 className="h3-bold md:h2-bold text-left w-full">Home Feed</h2>
           {isPostLoading && !posts ? <Loader/> : (
-          <ul className="flex flex-col gap-9 w-full flex-1">
-            {posts.map((post)=> <li className="w-full flex justify-center"><PostCard key = {post.id} post = {post}/></li>)}
-          </ul> 
+        posts.length > 0 ? (<ul className="flex flex-col gap-9 w-full flex-1">
+        {posts.map((post)=> <li className="w-full flex justify-center"><PostCard key = {post.id} post = {post}/></li>)}
+      </ul>) : <p className='text-light-4 mt-10 text-center w-full'>No posts</p>
             )}
         </div>
       </div>
