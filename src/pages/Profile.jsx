@@ -7,9 +7,13 @@ const Profile = () => {
     const {userID} = useParams();
     const {user, isLoading} = useAnyUser(userID);
   return (
-    <div>
-      {isLoading ? <Loader/> : <>      <h2>Profile</h2>
-        <p>{user.username}</p></>}
+    <div className='profile-container'>
+      {isLoading ? <Loader/> : 
+      <div className='profile_inner-container'>
+        <img src = {user.profileImage || "../assets/icons/profile-placeholder.svg"} alt='profile' />
+        <h2 className='h3-bold md:h2-bold w-full'>{user.name}</h2>
+        <p className='small-regular text-light-3'>@{user.username}</p>
+      </div>}
     </div>
   )
 }
