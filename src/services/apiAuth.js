@@ -44,6 +44,13 @@ export async function getCurrentUser() {
     if (data) return data.user;
 }
 
+export async function getUser(id) {
+    const { data: user, error } = await supabase.from('profiles').select('*').eq('id', id).single();
+    console.log(user)
+    if (error) throw new Error(error.message);
+    return user;
+}
+
 export async function getAllUsers() {
     const { data: users, error } = await supabase.from('profiles').select('*');
 
