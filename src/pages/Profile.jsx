@@ -2,6 +2,7 @@ import React from 'react'
 import {useParams} from 'react-router-dom';
 import { useAnyUser } from '../hooks/useAnyUser';
 import Loader from '../ui/Loader';
+import StatBlock from '../ui/StatBlock';
 
 const Profile = () => {
     const {userID} = useParams();
@@ -26,6 +27,11 @@ const Profile = () => {
               <p className="small-regular md:body-medium text-light-3 text-center xl:text-left">
                 @{user.username}
               </p>
+            </div>
+            <div className='flex gap-8 mt-10 items-center justify-center xl:justify-start flex-wrap z-20'>
+            <StatBlock value={0} label='Posts'/>
+            <StatBlock value={0} label='Followers'/>
+            <StatBlock value={0} label='Following'/>
             </div>
           </div>
         </div>
