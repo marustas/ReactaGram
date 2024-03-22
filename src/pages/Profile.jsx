@@ -9,7 +9,7 @@ const Profile = () => {
     const {userID} = useParams();
     const {user, isLoading} = useAnyUser(userID);
     const {user: currentUser} = useUser();
-    console.log(currentUser, userID);
+
   return (
     <div className='profile-container'>
       {isLoading ? <Loader/> : 
