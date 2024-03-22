@@ -1,12 +1,15 @@
 import React from 'react'
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { useAnyUser } from '../hooks/useAnyUser';
 import Loader from '../ui/Loader';
 import StatBlock from '../ui/StatBlock';
+import { useUser } from '../hooks/useUser';
 
 const Profile = () => {
     const {userID} = useParams();
     const {user, isLoading} = useAnyUser(userID);
+    const {user: currentUser} = useUser();
+    console.log(currentUser, userID);
   return (
     <div className='profile-container'>
       {isLoading ? <Loader/> : 
@@ -29,11 +32,35 @@ const Profile = () => {
               </p>
             </div>
             <div className='flex gap-8 mt-10 items-center justify-center xl:justify-start flex-wrap z-20'>
-            <StatBlock value={0} label='Posts'/>
-            <StatBlock value={0} label='Followers'/>
-            <StatBlock value={0} label='Following'/>
+              <StatBlock value={0} label='Posts'/>
+              <StatBlock value={0} label='Followers'/>
+              <StatBlock value={0} label='Following'/>
             </div>
+            <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
+              Your bio
+            </p>
           </div>
+
+          <div className="flex justify-center gap-4">
+          <Link
+                to={`/update-profile/${userID}`}
+                className={currentUser.id !== userID ? "hidden" : 'h-12 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg'}>
+                <img
+                  src={"../assets/icons/edit.svg"}
+                  alt="edit"
+                  width={20}
+                  height={20}
+                />
+                <p className="flex whitespace-nowrap small-medium">
+                  Edit Profile
+                </p>
+              </Link>
+              <div className={`${currentUser.id === userID && "hidden"}`}>
+              <button type="button" className="shad-button_primary px-8 rounded-md p-2">
+                Follow
+              </button>
+            </div>
+            </div>
         </div>
       </div>}
   </div>
