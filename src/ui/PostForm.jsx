@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import toast from "react-hot-toast";
 
 import FileUploader from './FileUploader';
 import Loader from "../ui/Loader";
@@ -7,7 +8,7 @@ import { useUser } from '../hooks/useUser';
 import { useCreatePost } from '../hooks/useCreatePost';
 import { createPostObject } from '../services/utils';
 import { useUpdatePost } from '../hooks/useUpdatePost';
-
+import { useNavigate } from "react-router-dom";
 
 const PostForm = ({post, action}) => {
   const {user} = useUser();
@@ -16,18 +17,21 @@ const PostForm = ({post, action}) => {
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
   const {isUpdating, updatePost} = useUpdatePost();
-
+  const navigate = useNavigate();
+  
   function onSubmit({caption, tags, location}){
     const newPostData = createPostObject(caption, tags, location, username, postImage, user.id, action);
 
-     if(!newPostData) return;
+     if(!newPostData){ 
+      toast.error('Some fields are missing'); 
+      return;
+     }
 
      if(action === 'create'){
       createPost(newPostData);
      }
 
      if(action === 'update'){
-      console.log(newPostData);
       updatePost({newPostData, id: post.id});
      }
 
@@ -54,7 +58,7 @@ const PostForm = ({post, action}) => {
           <input disabled={isPosting || isUpdating}  {...register("location")} type="text" className='px-3 py-2 rounded-md shad-input' placeholder={ action === 'update' ? post.location : 'Location'}/>
         </div>
         <div className='flex gap-4 items-center justify-end'>
-          <button className='p-3 rounded-md shad-button_dark_4'>Cancel</button>
+          <button onClick={()=>navigate(-1)} className='p-3 rounded-md shad-button_dark_4'>Cancel</button>
           <button type='submit' className='p-3 rounded-md shad-button_primary whitespace-nowrap'>Submit</button>
         </div>
       </form>

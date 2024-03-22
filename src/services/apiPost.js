@@ -38,7 +38,6 @@ export async function savePost(postData) {
 }
 
 export async function updatePost(updatedPost) {
-    console.log(updatedPost);
     const { newPostData } = updatedPost;
     if (newPostData.postImage) {
         const postImageName = `post-${newPostData.username}-${Math.random()}`;
@@ -46,7 +45,7 @@ export async function updatePost(updatedPost) {
         newPostData.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
         if (error) throw new Error("No image to upload");
     }
-
+    // need to add the functionality of diffing the newPost and post and update only the changed fields
     if (!newPostData.caption && !newPostData.location && !newPostData.tags) return;
 
     const { postImage, ...newPost } = newPostData;

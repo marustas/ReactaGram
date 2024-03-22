@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase, { supabaseUrl } from "./supabase";
 
 export async function signUp({ email, password, username, name }) {
 
@@ -28,7 +28,7 @@ export async function signIn({ email, password }) {
 }
 
 export async function signOut() {
-    const { error } = await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut();
 
     if (error) throw new Error(error.message);
 }
@@ -59,7 +59,27 @@ export async function getAllUsers() {
 }
 
 export async function createUser(user) {
-    const { data, error } = await supabase.from('profiles').insert([{...user }]).select();
+    const { username, name } = user;
+    const { data, error } = await supabase.from('profiles').insert([{ 'username': username, 'name': name, 'profileImage': '' }]).select();
     if (error) throw new Error(error.message)
+    return data;
+}
+
+export async function updateUser(user) {
+    const { profileImage } = user;
+    if (profileImage.postImage) {
+        const postImageName = `post-${profileImage.username}-${Math.random()}`;
+        const { error } = await supabase.storage.from('media').upload(postImageName, profileImage.postImage);
+        profileImage.mediaUrl = `${supabaseUrl}/storage/v1/object/public/profile-images/${postImageName}`;
+        if (error) throw new Error("No profile image to upload");
+    }
+
+    if (!profileImage.caption && !profileImage.location && !profileImage.tags) return;
+
+    const { postImage, ...newPost } = profileImage;
+    const { data, error } = await supabase.from('profiles').update({...newPost }).eq('id', user.id).select();
+
+    if (error) throw new Error('This post could not be updated. Please try again.');
+
     return data;
 }
