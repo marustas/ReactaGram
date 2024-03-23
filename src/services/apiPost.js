@@ -39,16 +39,22 @@ export async function savePost(postData) {
 
 export async function updatePost(updatedPost) {
     const { newPostData } = updatedPost;
+    const { data: oldPost } = await supabase.from('posts').select('*').eq('id', updatedPost.id).single();
+
     if (newPostData.postImage) {
-        const postImageName = `post-${newPostData.username}-${Math.random()}`;
+        const postImageName = `post-${oldPost.username}-${Math.random()}`;
         const { error } = await supabase.storage.from('media').upload(postImageName, newPostData.postImage);
         newPostData.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
         if (error) throw new Error("No image to upload");
     }
-    // need to add the functionality of diffing the newPost and post and update only the changed fields
-    if (!newPostData.caption && !newPostData.location && !newPostData.tags) return;
 
     const { postImage, ...newPost } = newPostData;
+
+    newPost.caption = newPost.caption !== '' ? newPost.caption : oldPost.caption;
+    newPost.tags = newPost.tags !== '' ? newPost.tags : oldPost.tags;
+    newPost.location = newPost.location !== '' ? newPost.location : oldPost.location;
+    newPost.mediaUrl = newPost.mediaUrl !== '' ? newPost.mediaUrl : oldPost.mediaUrl;
+
     const { data, error } = await supabase.from('posts').update({...newPost }).eq('id', updatedPost.id).select();
 
     if (error) throw new Error('This post could not be updated. Please try again.');
