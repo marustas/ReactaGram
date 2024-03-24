@@ -26,9 +26,8 @@ const Window = ({children, name})=>{
     if(name !== openName) return null;
 
     return (
-    <div className='bg-dark-4 fixed top-[10%] left-[70%] rounded-md px-5 py-8 gap-2'>
-        <button onClick={close}>X</button>
-        {children}
+    <div className='bg-dark-4 fixed top-[10%] left-[88%] rounded-md px-5 py-5 gap-2'>
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
     </div> 
     )
 }

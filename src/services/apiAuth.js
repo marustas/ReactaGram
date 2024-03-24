@@ -68,13 +68,11 @@ export async function createUser(user) {
 export async function updateUser(user) {
     const { profileImage } = user;
     if (profileImage.postImage) {
-        const postImageName = `post-${profileImage.username}-${Math.random()}`;
-        const { error } = await supabase.storage.from('media').upload(postImageName, profileImage.postImage);
-        profileImage.mediaUrl = `${supabaseUrl}/storage/v1/object/public/profile-images/${postImageName}`;
+        const profileImageName = `post-${user.username}-${Math.random()}`;
+        const { error } = await supabase.storage.from('media').upload(profileImageName, profileImage.postImage);
+        profileImage.mediaUrl = `${supabaseUrl}/storage/v1/object/public/profile-images/${profileImageName}`;
         if (error) throw new Error("No profile image to upload");
     }
-
-    if (!profileImage.caption && !profileImage.location && !profileImage.tags) return;
 
     const { postImage, ...newPost } = profileImage;
     const { data, error } = await supabase.from('profiles').update({...newPost }).eq('id', user.id).select();
