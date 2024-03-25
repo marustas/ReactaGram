@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import FileUploader from './FileUploader';
 import { useForm } from 'react-hook-form';
+import { useUpdateUser } from '../hooks/useUpdateUser';
 
 const ProfileForm = ({profile}) => {
+    console.log(profile);
     const navigate = useNavigate();
     const {handleSubmit, register } = useForm();
-    const {profileImage, setProfileImage} = useState(profile.profileImage);
+    const {profileImage, setProfileImage} = useState(profile.profileImage || '');
+    const {isUpdating, updateUser} = useUpdateUser();
+    
     function onSubmit(){
 
     }

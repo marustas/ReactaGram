@@ -58,8 +58,8 @@ export async function getAllUsers() {
     return users;
 }
 
-export async function createUser(user, id) {
-    const { username, name } = user;
+export async function createUser(user) {
+    const { username, name, id } = user;
     const { data: enlistedUser, error } = await supabase.from('profiles').select('*').eq('id', id).single();
     if (error) throw new Error(error.message);
 
@@ -70,7 +70,6 @@ export async function createUser(user, id) {
     }
 
     return enlistedUser;
-
 }
 
 export async function updateUser(user) {

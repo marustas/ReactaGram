@@ -8,13 +8,14 @@ import { useEnlistUser } from '../hooks/useEnlistUser';
 const LeftBar = () => {
   const {user} = useUser();
   const {enlist} = useEnlistUser();
+  const {id} = user;
   const {username, name} = user.user_metadata;
   const {pathname} = useLocation();
   const {isSigningOut, signOut} = useSignOut();
 
   useEffect(function(){
-    enlist({username, name}, user.id)
-  },[enlist, username, name, user.id])
+    enlist({username, name, id})
+  },[enlist, username, name, id])
   
   return (
     <nav className='leftsidebar gap-20'>

@@ -41,7 +41,7 @@ const App = () => {
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/profile/:userID" element={<Profile />} />
           <Route path="/all-users" element={<AllUsers />} />
-          <Route path="/update-profile/:user" element={<UpdateProfile />} />
+          <Route path="/update-profile/:userID" element={<UpdateProfile />} />
         </Route>
         <Route index element={<Home />} />
         <Route element={<AuthLayout />} >

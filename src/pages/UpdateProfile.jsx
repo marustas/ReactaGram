@@ -7,6 +7,7 @@ import Loader from '../ui/Loader';
 const UpdateProfile = () => {
   const {userID} = useParams();
   const {user, isLoading} = useAnyUser(userID);
+  
   if(isLoading) return <Loader/>;
   
   return (
