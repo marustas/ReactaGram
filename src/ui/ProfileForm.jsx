@@ -8,7 +8,7 @@ const ProfileForm = ({profile}) => {
     console.log(profile);
     const navigate = useNavigate();
     const {handleSubmit, register } = useForm();
-    const {profileImage, setProfileImage} = useState(profile.profileImage || '');
+    const {profileImage, setProfileImage} = useState(null);
     const {isUpdating, updateUser} = useUpdateUser();
     
     function onSubmit(){

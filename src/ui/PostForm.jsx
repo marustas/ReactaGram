@@ -51,7 +51,7 @@ const PostForm = ({post, action}) => {
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label>Post image</label>
-          <FileUploader handleSetPostImage = {setPostImage} mediaUrl = {post?.mediaUrl}/>
+          <FileUploader handleSetImage = {setPostImage} mediaUrl = {post?.mediaUrl}/>
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label className='shad-form_label'>Add location</label>
