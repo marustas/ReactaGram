@@ -46,7 +46,7 @@ export async function getCurrentUser() {
 
 export async function getUser(id) {
     const { data: user, error } = await supabase.from('profiles').select('*').eq('id', id).single();
-    console.log(user)
+
     if (error) throw new Error(error.message);
     return user;
 }
@@ -58,11 +58,19 @@ export async function getAllUsers() {
     return users;
 }
 
-export async function createUser(user) {
+export async function createUser(user, id) {
     const { username, name } = user;
-    const { data, error } = await supabase.from('profiles').insert([{ 'username': username, 'name': name, 'profileImage': '' }]).select();
-    if (error) throw new Error(error.message)
-    return data;
+    const { data: enlistedUser, error } = await supabase.from('profiles').select('*').eq('id', id).single();
+    if (error) throw new Error(error.message);
+
+    if (!enlistedUser) {
+        const { data, error } = await supabase.from('profiles').insert([{ 'username': username, 'name': name, 'profileImage': '' }]).select();
+        if (error) throw new Error(error.message);
+        return data;
+    }
+
+    return enlistedUser;
+
 }
 
 export async function updateUser(user) {

@@ -13,8 +13,8 @@ const LeftBar = () => {
   const {isSigningOut, signOut} = useSignOut();
 
   useEffect(function(){
-    enlist({username, name})
-  },[enlist, username, name])
+    enlist({username, name}, user.id)
+  },[enlist, username, name, user.id])
   
   return (
     <nav className='leftsidebar gap-20'>
