@@ -5,19 +5,20 @@ import { useForm } from 'react-hook-form';
 import { useUpdateUser } from '../hooks/useUpdateUser';
 
 const ProfileForm = ({profile}) => {
-    console.log(profile);
     const navigate = useNavigate();
     const {handleSubmit, register } = useForm();
-    const {profileImage, setProfileImage} = useState(null);
+    const [profileImage, setProfileImage] = useState(null);
     const {isUpdatingUser, updateUser} = useUpdateUser();
     
-    function onSubmit({username, name, bio, }){
-      updateUser({name: name,
-          username: username,
-          bio: bio, 
-          profileImageFile: profileImage,
-          profileImage: '',
-          id: profile.id})
+    function onSubmit({username, name, bio }){
+      const newUser = {name: name,
+        username: username,
+        bio: bio, 
+        profileImageFile: profileImage,
+        profileImage: '',
+        id: profile.id};
+
+      updateUser(newUser);
     }
 
   return (

@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom'
 import { formatDate, formatTags } from '../services/utils'
 import { useUser } from '../hooks/useUser';
 import PostStats from './PostStats';
+import { useAnyUser } from '../hooks/useAnyUser';
 
 const PostCard = ({post}) => {
-    // Need to format the user into a Context to follow DRY principlesf
     const {user} = useUser();
     const {username : currentUser} = user.user_metadata;
     const tags = formatTags(post.tags);
+    const {user: anyUser} = useAnyUser(user.id);
 
   return (
     <div className='post-card'>
         <div className='flex-between'>
             <div className='flex items-center gap-3'>
                 <Link to={`/profile/${post.userID}`}>
-                    <img className='rounded-full w-12 lg:h-12' alt='creator' src = "../assets/images/profile.png" />
+                    <img className='rounded-full w-12 lg:h-12' alt='creator' src = {anyUser?.profileImage || "../assets/images/profile.png"} />
                 </Link>
                 <div className='flex flex-col'>
                     <p className='base-medium lg:body-bold text-light-1'>{post.username}</p>

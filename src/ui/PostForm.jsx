@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import toast from "react-hot-toast";
 
 import FileUploader from './FileUploader';
 import Loader from "../ui/Loader";
@@ -23,7 +22,6 @@ const PostForm = ({post, action}) => {
     const newPostData = createPostObject(caption, tags, location, username, postImage, user.id, action);
 
      if(!newPostData){ 
-      toast.error('Some fields are missing'); 
       return;
      }
 

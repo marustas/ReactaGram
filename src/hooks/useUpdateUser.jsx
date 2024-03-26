@@ -8,7 +8,7 @@ export function useUpdateUser(){
     const navigate = useNavigate();
     const {isLoading: isUpdatingUser, mutate: updateUser} = useMutation({
         mutationFn: updateUserApi,
-        onSuccess: () => { navigate('/'); queryClient.invalidateQueries({queryKey: ['currentUser']})},
+        onSuccess: () => { navigate('/'); queryClient.invalidateQueries({queryKey: ['currentUser']}); queryClient.invalidateQueries({queryKey: ['user']})},
         onError: (error) => {toast.error(error.message)}
     })
     return {isUpdatingUser, updateUser};
