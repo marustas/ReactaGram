@@ -1,3 +1,4 @@
+import { updatePost } from "./apiPost";
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function signUp({ email, password, username, name }) {
@@ -64,7 +65,7 @@ export async function createUser(user) {
     if (error) throw new Error(error.message);
 
     if (!enlistedUser) {
-        const { data, error } = await supabase.from('profiles').insert([{ 'username': username, 'name': name, 'profileImage': '' }]).select();
+        const { data, error } = await supabase.from('profiles').insert([{ 'username': username, 'name': name, 'profileImage': '', 'bio': '' }]).select();
         if (error) throw new Error(error.message);
         return data;
     }
@@ -73,16 +74,22 @@ export async function createUser(user) {
 }
 
 export async function updateUser(user) {
-    const { profileImage } = user;
-    if (profileImage.postImage) {
+    if (user.profileImageFile) {
         const profileImageName = `post-${user.username}-${Math.random()}`;
-        const { error } = await supabase.storage.from('media').upload(profileImageName, profileImage.postImage);
-        profileImage.mediaUrl = `${supabaseUrl}/storage/v1/object/public/profile-images/${profileImageName}`;
+        const { error } = await supabase.storage.from('media').upload(profileImageName, user.profileImageFile);
+        user.profileImage = `${supabaseUrl}/storage/v1/object/public/profile-images/${profileImageName}`;
         if (error) throw new Error("No profile image to upload");
     }
+    const { data: oldUser } = await supabase.from('profiles').select('*').eq('id', user.id).single();
 
-    const { postImage, ...newPost } = profileImage;
-    const { data, error } = await supabase.from('profiles').update({...newPost }).eq('id', user.id).select();
+    const { profileImageFile, ...updatedUser } = user;
+
+    updatedUser.username = updatedUser.username !== '' ? updatedUser.username : oldUser.username;
+    updatedUser.name = updatedUser.name !== '' ? updatedUser.name : oldUser.name;
+    updatedUser.bio = updatedUser.bio !== '' ? updatedUser.bio : oldUser.bio;
+    updatedUser.profileImage = updatedUser.profileImage !== '' ? updatedUser.profileImage : oldUser.profileImage;
+
+    const { data, error } = await supabase.from('profiles').update({...updatedUser }).eq('id', user.id).select();
 
     if (error) throw new Error('This post could not be updated. Please try again.');
 

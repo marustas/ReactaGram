@@ -11,8 +11,13 @@ const ProfileForm = ({profile}) => {
     const {profileImage, setProfileImage} = useState(null);
     const {isUpdating, updateUser} = useUpdateUser();
     
-    function onSubmit(){
-
+    function onSubmit({username, name, bio, }){
+      updateUser({name: name,
+          username: username,
+          bio: bio, 
+          profileImageFile: profileImage,
+          profileImage: '',
+          id: profile.id})
     }
 
   return (
@@ -27,7 +32,7 @@ const ProfileForm = ({profile}) => {
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label>Profile image</label>
-          <FileUploader handleSetPostImage = {setProfileImage} mediaUrl = {profile?.profileImage}/>
+          <FileUploader handleSetImage = {setProfileImage} mediaUrl = {profile?.profileImage}/>
         </div>
         <div className='flex flex-col gap-2 py-1.5'>
           <label className='shad-form_label'>Bio</label>
