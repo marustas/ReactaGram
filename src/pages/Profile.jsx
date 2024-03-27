@@ -9,6 +9,9 @@ const Profile = () => {
     const {userID} = useParams();
     const {user, isLoading} = useAnyUser(userID);
     const {user: currentUser} = useUser();
+    //number of posts will be the length of the array, which includes the posts, whetre this user is listed as creator
+    // same applies followers and following.
+    // when the user clicks the follow button, the id of this user will be input in the array of strings, same as likes and saved posts functionality
     
   return (
     <div className='profile-container'>

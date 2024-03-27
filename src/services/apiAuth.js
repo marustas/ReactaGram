@@ -74,7 +74,7 @@ export async function createUser(user) {
 
 export async function updateUser(user) {
     if (user.profileImageFile) {
-        const profileImageName = `post-${user.username}-${Math.random()}`;
+        const profileImageName = `profile-${user.username}-${Math.random()}`;
         const { error } = await supabase.storage.from('profile-images').upload(profileImageName, user.profileImageFile);
         user.profileImage = `${supabaseUrl}/storage/v1/object/public/profile-images/${profileImageName}`;
         if (error) throw new Error("No profile image to upload");
