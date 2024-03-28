@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-import FileUploader from './FileUploader';
-import Loader from "../ui/Loader";
-import { useUser } from '../hooks/useUser';
-import { useCreatePost } from '../hooks/useCreatePost';
-import { createPostObject } from '../services/utils';
-import { useUpdatePost } from '../hooks/useUpdatePost';
+import FileUploader from '../FileUploader';
+import Loader from "../Loader";
+import { useUser } from '../../hooks/useUser';
+import { useCreatePost } from '../../hooks/useCreatePost';
+import { createPostObject } from '../../services/utils';
+import { useUpdatePost } from '../../hooks/useUpdatePost';
 import { useNavigate } from "react-router-dom";
 
 const PostForm = ({post, action}) => {

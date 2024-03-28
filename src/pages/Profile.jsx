@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link, useParams} from 'react-router-dom';
+
 import { useAnyUser } from '../hooks/useAnyUser';
+import { useUser } from '../hooks/useUser';
 import Loader from '../ui/Loader';
 import StatBlock from '../ui/StatBlock';
-import { useUser } from '../hooks/useUser';
 
 const Profile = () => {
     const {userID} = useParams();

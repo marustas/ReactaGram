@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import SearchResults from '../ui/SearchResults';
+
 import { useSearchPosts } from '../hooks/useSearchPosts';
+import { useLoadPosts } from '../hooks/useLoadPosts';
 import PostList from '../ui/PostList';
 import useDebounce from '../hooks/useDebounce';
-import { useLoadPosts } from '../hooks/useLoadPosts';
+import SearchResults from '../ui/SearchResults';
 import Loader from '../ui/Loader';
 
 const Explore = () => {

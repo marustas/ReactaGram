@@ -1,8 +1,10 @@
 import React from 'react'
+
 import { useLoadPosts } from '../hooks/useLoadPosts'
+import { useUser } from '../hooks/useUser';
 import Loader from '../ui/Loader';
 import PostList from '../ui/PostList';
-import { useUser } from '../hooks/useUser';
+
 
 const Saved = () => {
   const {isPostLoading, posts} = useLoadPosts();

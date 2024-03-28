@@ -1,6 +1,7 @@
 import React from 'react';
-import PostForm from '../ui/PostForm';
+
 import { usePost } from '../hooks/usePost';
+import PostForm from '../ui/forms/PostForm';
 import Loader from '../ui/Loader';
 
 const EditPost = () => {

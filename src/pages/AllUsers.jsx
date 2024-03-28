@@ -1,8 +1,9 @@
 import React from 'react'
-import Loader from '../ui/Loader';
-import UserCard from '../ui/UserCard';
+
 import { useUsers } from '../hooks/useUsers';
 import { useUser } from '../hooks/useUser';
+import Loader from '../ui/Loader';
+import UserCard from '../ui/UserCard';
 
 const AllUsers = () => {
   const {users, isLoading} = useUsers();

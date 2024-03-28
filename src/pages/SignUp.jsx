@@ -1,6 +1,6 @@
 import React from "react";
-import FormRowVertical from "../ui/FormRowVertical";
-import Form from "../ui/Form";
+import FormRowVertical from "../ui/forms/FormRowVertical";
+import Form from "../ui/forms/Form";
 import Loader from "../ui/Loader";
 import { Link } from "react-router-dom";
 import { useSignUp } from "../hooks/useSignUp";

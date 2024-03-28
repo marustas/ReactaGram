@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import FileUploader from './FileUploader';
+import FileUploader from '../FileUploader';
 import { useForm } from 'react-hook-form';
-import { useUpdateUser } from '../hooks/useUpdateUser';
+import { useUpdateUser } from '../../hooks/useUpdateUser';
 
 const ProfileForm = ({profile}) => {
     const navigate = useNavigate();

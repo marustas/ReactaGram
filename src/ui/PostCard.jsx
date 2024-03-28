@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { formatDate, formatTags } from '../services/utils'
 import { useUser } from '../hooks/useUser';
-import PostStats from './PostStats';
 import { useAnyUser } from '../hooks/useAnyUser';
+import PostStats from './PostStats';
+
 
 const PostCard = ({post}) => {
     const {user} = useUser();

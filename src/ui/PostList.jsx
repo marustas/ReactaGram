@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import PostStats from './PostStats'
 
 const PostList = ({posts, showUser = true, showStats = true}) => {

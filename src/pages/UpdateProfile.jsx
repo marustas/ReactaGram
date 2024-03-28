@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
-import ProfileForm from '../ui/ProfileForm';
+import ProfileForm from '../ui/forms/ProfileForm';
 import { useAnyUser } from '../hooks/useAnyUser';
 import Loader from '../ui/Loader';
 

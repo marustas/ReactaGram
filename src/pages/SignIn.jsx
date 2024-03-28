@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSignIn } from "../hooks/useSignIn";
-import Form from "../ui/Form";
-import FormRowVertical from "../ui/FormRowVertical";
+import Form from "../ui/forms/Form";
+import FormRowVertical from "../ui/forms/FormRowVertical";
 import Loader from "../ui/Loader";
 
 const SignIn = () => {

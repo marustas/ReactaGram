@@ -4,9 +4,8 @@ import { Link, useParams} from 'react-router-dom';
 import { usePost } from '../hooks/usePost'
 import { useUser } from '../hooks/useUser';
 import { useDeletePost } from '../hooks/useDeletePost';
-import Loader from '../ui/Loader';
-
 import { formatDate, formatTags } from '../services/utils';
+import Loader from '../ui/Loader';
 import PostStats from '../ui/PostStats';
 import Modal from '../ui/Modal';
 import ConfirmDelete from '../ui/ConfirmDelete';
