@@ -1,12 +1,16 @@
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function createPost(postData) {
+    const { data: user } = await supabase.from('profiles').select('*').eq('id', postData.creatorID).single();
+    postData.creatorUrl = user.profileImage;
+
     if (postData.postImage) {
-        const postImageName = `post-${postData.username}-${Math.random()}`;
+        const postImageName = `post-${postData.creator}-${Math.random()}`;
         const { error } = await supabase.storage.from('media').upload(postImageName, postData.postImage);
         postData.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
         if (error) throw new Error("No image to upload");
     }
+
     const { postImage, ...post } = postData;
     const { data, error } = await supabase.from('posts').insert([{...post }]).select();
 
@@ -42,7 +46,7 @@ export async function updatePost(updatedPost) {
     const { data: oldPost } = await supabase.from('posts').select('*').eq('id', updatedPost.id).single();
 
     if (newPostData.postImage) {
-        const postImageName = `post-${oldPost.username}-${Math.random()}`;
+        const postImageName = `post-${oldPost.creator}-${Math.random()}`;
         const { error } = await supabase.storage.from('media').upload(postImageName, newPostData.postImage);
         newPostData.mediaUrl = `${supabaseUrl}/storage/v1/object/public/media/${postImageName}`;
         if (error) throw new Error("No image to upload");

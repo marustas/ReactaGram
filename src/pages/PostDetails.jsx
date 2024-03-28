@@ -29,9 +29,9 @@ const PostDetails = () => {
            <div className='post_details-info'>
                 <div className='flex-between w-full'>
                     <Link className='flex items-center gap-3' to={`/profile/${post?.userID}`}>
-                        <img className='rounded-full w-8 h-8 lg:h-12 lg:w-12' alt='creator' src = "../assets/images/profile.png" />
+                        <img className='rounded-full w-8 h-8 lg:h-12 lg:w-12' alt='creator' src = {post.creatorUrl || "../assets/images/profile.png"} />
                         <div className='flex flex-col'>
-                            <p className='base-medium lg:body-bold text-light-1'>{post?.username}</p>
+                            <p className='base-medium lg:body-bold text-light-1'>{post?.creator}</p>
                             <div className='flex-center text-light-3 gap-2'>
                                 <p className='subtle-semibold lg:small-regular'>{formatDate(post?.created_at)}</p>
                                 -
@@ -40,12 +40,12 @@ const PostDetails = () => {
                         </div>
                     </Link>
                     <div className='flex-center gap-4'>
-                        <Link className={`${user.user_metadata.username !== post.username && 'hidden'}`} to={`/update-post/${id}`}>
+                        <Link className={`${user.user_metadata.username !== post.creator && 'hidden'}`} to={`/update-post/${id}`}>
                             <img width={22} height={22} alt='edit' src='../public/assets/icons/edit.svg'/>
                         </Link>
                         <Modal>
                             <Modal.Open opens='delete-post'>
-                                <button className={`ghot_details-delete_btn ${user.user_metadata.username !== post.username && 'hidden'}`}>
+                                <button className={`ghot_details-delete_btn ${user.user_metadata.username !== post.creator && 'hidden'}`}>
                                     <img idth={24} height={24}  alt='delete' src='../assets/icons/delete.svg'/>
                                 </button>
                             </Modal.Open>

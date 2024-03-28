@@ -31,11 +31,12 @@ export const createPostObject = (caption, tags, location, username, image, userI
             caption: caption,
             tags: tags,
             location: location,
-            username: username,
+            creator: username,
             likes: [],
             postImage: image,
             mediaUrl: "",
-            userID: userID,
+            creatorID: userID,
+            creatorUrl: '',
             saved: []
         }
     }

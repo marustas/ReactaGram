@@ -9,7 +9,7 @@ const PostCard = ({post}) => {
     const {user} = useUser();
     const {username : currentUser} = user.user_metadata;
     const tags = formatTags(post.tags);
-    const {user: anyUser} = useAnyUser(user.id);
+    const {user: anyUser} = useAnyUser(post.creatorID);
 
   return (
     <div className='post-card'>
@@ -19,7 +19,7 @@ const PostCard = ({post}) => {
                     <img className='rounded-full w-12 lg:h-12' alt='creator' src = {anyUser?.profileImage || "../assets/images/profile.png"} />
                 </Link>
                 <div className='flex flex-col'>
-                    <p className='base-medium lg:body-bold text-light-1'>{post.username}</p>
+                    <p className='base-medium lg:body-bold text-light-1'>{post.creator}</p>
                     <div className='flex-center text-light-3 gap-2'>
                         <p className='subtle-semibold lg:small-regular'>{formatDate(post.created_at)}</p>
                         -
@@ -27,7 +27,7 @@ const PostCard = ({post}) => {
                     </div>
                 </div>
             </div>
-            <Link className={post.username !== currentUser ? 'hidden' : ''} to ={`/update-post/${post.id}`}>
+            <Link className={post.creator !== currentUser ? 'hidden' : ''} to ={`/update-post/${post.id}`}>
                 <img alt='edit' width={25} height={25} src='../assets/icons/edit.svg'/>
             </Link>
         </div>

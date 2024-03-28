@@ -14,7 +14,7 @@ const PostList = ({posts, showUser = true, showStats = true}) => {
                 {showUser && (
                 <div className='flex items-center justify-start gap-2 flex-1'>
                     <img className='h-8 w-8 rounded-full' src={post.creatorUrl || '../assets/icons/profile-placeholder.svg'} alt='creator'/>
-                    <p className='line-clamp-1'>{post.username}</p>
+                    <p className='line-clamp-1'>{post.creator}</p>
                 </div>
                 )}
                 {showStats && (<PostStats post={post}/>)}
