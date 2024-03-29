@@ -40,7 +40,7 @@ const PostDetails = () => {
                     </Link>
                     <div className='flex-center gap-4'>
                         <Link className={`${user.user_metadata.username !== post.creator && 'hidden'}`} to={`/update-post/${id}`}>
-                            <img width={22} height={22} alt='edit' src='../public/assets/icons/edit.svg'/>
+                            <img width={22} height={22} alt='edit' src='../assets/icons/edit.svg'/>
                         </Link>
                         <Modal>
                             <Modal.Open opens='delete-post'>

@@ -20,7 +20,7 @@ const Explore = () => {
         <div className='explore-inner_container'>
             <h2 className='h3-bold md:h2-bold w-full'>Search posts</h2>
             <div className='flex gap-1 rounded-lg bg-dark-4 w-full px-4'>
-                <img src='../public/assets/icons/search.svg' width={24} height={24} alt='search'/>
+                <img src='../assets/icons/search.svg' width={24} height={24} alt='search'/>
                 <input value={searchValue} onChange={(e)=>{setSearchValue(e.target.value)}} type='text' placeholder='search by caption' className='explore-search w-full'/>
             </div>
         </div>
