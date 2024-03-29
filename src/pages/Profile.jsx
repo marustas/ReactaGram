@@ -40,7 +40,7 @@ const Profile = () => {
               <StatBlock value={filteredPosts.length} label={ filteredPosts.length > 1 ? 'Posts' : 'Post'}/>
             </div>
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
-              {user?.bio}
+              {user?.bio ? user.bio : 'No bio'}
             </p>
           </div>
           <div className="flex justify-center gap-4">
@@ -57,11 +57,6 @@ const Profile = () => {
                   Edit Profile
                 </p>
               </Link>
-              <div className={`${currentUser.id === userID && "hidden"}`}>
-              <button type="button" className="shad-button_primary px-8 rounded-md p-2">
-                Follow
-              </button>
-            </div>
             </div>
         </div>
       </div>}

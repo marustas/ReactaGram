@@ -18,10 +18,6 @@ const UserCard = ({user}) => {
           @{user.username}
         </p>
       </div>
-
-      <button type="button" size="sm" className="p-1 rounded-md shad-button_primary px-5">
-        Follow
-      </button>
     </Link>
   )
 }
