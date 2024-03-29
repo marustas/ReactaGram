@@ -5,22 +5,20 @@ import { sidebarLinks } from '../const';
 import { useSignOut } from '../hooks/useSignOut';
 import { useEnlistUser } from '../hooks/useEnlistUser';
 import { useAnyUser } from '../hooks/useAnyUser';
-import Loader from './Loader';
 
 const LeftBar = () => {
   const {user} = useUser();
   const {enlist} = useEnlistUser();
   const {id} = user;
-  const {username, name} = user.user_metadata;
+  const {username, name} = user?.user_metadata;
   const {pathname} = useLocation();
   const {isSigningOut, signOut} = useSignOut();
-  const {user: anyUser, isLoading: isLoadingAnyUser} = useAnyUser(user.id);
+  const {user: anyUser} = useAnyUser(user?.id);
 
   useEffect(function(){
     enlist({username, name, id})
   },[enlist, username, name, id])
 
-  if(isLoadingAnyUser){return <Loader/>;}
   
   return (
     <nav className='leftsidebar gap-20'>
@@ -29,7 +27,7 @@ const LeftBar = () => {
           <img height={36} width={170} alt = "home" src = "../assets/images/logo.svg"/>
         </Link>
         <Link to={`/profile/${user.id}`} className='items-center flex gap-3'>
-          <img className='h-14 w-14 rounded-full' alt = "profile" src = {anyUser.profileImage || "../assets/images/profile.png"}/>
+          <img className='h-14 w-14 rounded-full' alt = "profile" src = {anyUser?.profileImage || "../assets/icons/profile-placeholder.svg"}/>
           <div className='flex flex-col'>
           <p className='body-bold'>{name}</p>
           <p className='small-regular text-light-3'>@{username}</p>

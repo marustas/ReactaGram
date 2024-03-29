@@ -60,8 +60,7 @@ export async function getAllUsers() {
 
 export async function createUser(user) {
     const { username, name, id } = user;
-    const { data: enlistedUser, error } = await supabase.from('profiles').select('*').eq('id', id).single();
-    if (error) throw new Error(error.message);
+    const { data: enlistedUser } = await supabase.from('profiles').select('*').eq('id', id).single();
 
     if (!enlistedUser) {
         const { data, error } = await supabase.from('profiles').insert([{ 'username': username, 'name': name, 'profileImage': '', 'bio': '' }]).select();
