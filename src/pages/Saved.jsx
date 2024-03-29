@@ -29,7 +29,7 @@ const Saved = () => {
       { 
       filteredPosts.length === 0 ? <p className='text-light-4 mt-10 text-center w-full'>You haven't saved any posts</p> :
             <div className='flex flex-wrap gap-9 w-full max-w-5xl'>
-                <PostList posts={filteredPosts}/>
+                <PostList showStats={false} posts={filteredPosts}/>
             </div>
     }
 </div>

@@ -27,8 +27,8 @@ const PostDetails = () => {
            <img className='post_details-img' alt='post' src={post.mediaUrl} />
            <div className='post_details-info'>
                 <div className='flex-between w-full'>
-                    <Link className='flex items-center gap-3' to={`/profile/${post?.userID}`}>
-                        <img className='rounded-full w-8 h-8 lg:h-12 lg:w-12' alt='creator' src = {post.creatorUrl || "../assets/images/profile.png"} />
+                    <Link className='flex items-center gap-3' to={`/profile/${post?.creatorID}`}>
+                        <img className='rounded-full w-8 h-8 lg:h-12 lg:w-12' alt='creator' src = {post.creatorUrl || "../assets/icons/profile-placeholder.svg"} />
                         <div className='flex flex-col'>
                             <p className='base-medium lg:body-bold text-light-1'>{post?.creator}</p>
                             <div className='flex-center text-light-3 gap-2'>

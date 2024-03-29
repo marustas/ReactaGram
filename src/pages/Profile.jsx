@@ -3,17 +3,18 @@ import {Link, useParams} from 'react-router-dom';
 
 import { useAnyUser } from '../hooks/useAnyUser';
 import { useUser } from '../hooks/useUser';
+import { useLoadPosts } from '../hooks/useLoadPosts';
 import Loader from '../ui/Loader';
 import StatBlock from '../ui/StatBlock';
+import PostList from "../ui/PostList";
 
 const Profile = () => {
     const {userID} = useParams();
     const {user, isLoading} = useAnyUser(userID);
     const {user: currentUser} = useUser();
-    //number of posts will be the length of the array, which includes the posts, whetre this user is listed as creator
-    // same applies followers and following.
-    // when the user clicks the follow button, the id of this user will be input in the array of strings, same as likes and saved posts functionality
-    
+    const {posts, isPostLoading} = useLoadPosts();
+    const filteredPosts = posts?.filter((post)=>post.creatorID === userID);
+
   return (
     <div className='profile-container'>
       {isLoading ? <Loader/> : 
@@ -36,13 +37,12 @@ const Profile = () => {
               </p>
             </div>
             <div className='flex gap-8 mt-10 items-center justify-center xl:justify-start flex-wrap z-20'>
-              <StatBlock value={0} label='Posts'/>
+              <StatBlock value={filteredPosts.length} label={ filteredPosts.length > 1 ? 'Posts' : 'Post'}/>
             </div>
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
               {user?.bio}
             </p>
           </div>
-
           <div className="flex justify-center gap-4">
           <Link
                 to={`/update-profile/${userID}`}
@@ -65,6 +65,9 @@ const Profile = () => {
             </div>
         </div>
       </div>}
+      <div className='flex max-w-5xl w-full'>
+      {isPostLoading ? <Loader/> : <PostList posts={filteredPosts} showStats = {currentUser.id !== userID} showUser={false}/>}
+      </div>
   </div>
   )
 }
