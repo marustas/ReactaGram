@@ -24,8 +24,6 @@ export function formatTags(inputString) {
 }
 
 export const createUserObject = (name, username, bio, profileImage, id) => {
-    if (!name || !username || !bio) return null;
-
     return {
         name: name,
         username: username,

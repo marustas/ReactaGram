@@ -13,6 +13,8 @@ const ProfileForm = ({profile}) => {
     
     function onSubmit({username, name, bio }){
       const newUser = createUserObject(name,username,bio,profileImage, profile.id);
+      if (!newUser.name && !newUser.username && !newUser.bio && !newUser.profileImageFile) return;
+       
       updateUser(newUser);
     }
 
