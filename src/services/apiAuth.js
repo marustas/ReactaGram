@@ -87,6 +87,9 @@ export async function updateUser(user) {
     updatedUser.bio = updatedUser.bio !== '' ? updatedUser.bio : oldUser.bio;
     updatedUser.profileImage = updatedUser.profileImage !== '' ? updatedUser.profileImage : oldUser.profileImage;
 
+    const { data: recentPosts } = await supabase.from('posts').update({ 'creatorUrl': updatedUser.profileImage }).eq('creatorID', user.id);
+
+
     const { data, error } = await supabase.from('profiles').update({...updatedUser }).eq('id', user.id).select();
 
     if (error) throw new Error('This post could not be updated. Please try again.');

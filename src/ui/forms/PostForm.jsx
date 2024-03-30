@@ -8,6 +8,7 @@ import { useCreatePost } from '../../hooks/useCreatePost';
 import { createPostObject } from '../../services/utils';
 import { useUpdatePost } from '../../hooks/useUpdatePost';
 import { useNavigate } from "react-router-dom";
+import { useAnyUser } from '../../hooks/useAnyUser';
 
 const PostForm = ({post, action}) => {
   const {user} = useUser();
@@ -16,6 +17,7 @@ const PostForm = ({post, action}) => {
   const {isPosting, createPost} = useCreatePost();
   const [postImage, setPostImage] = useState(null);
   const {isUpdating, updatePost} = useUpdatePost();
+  const {user: anyUser} = useAnyUser(user?.id);
   const navigate = useNavigate();
   
   function onSubmit({caption, tags, location}){
@@ -24,7 +26,8 @@ const PostForm = ({post, action}) => {
      if(!newPostData){ 
       return;
      }
-
+     newPostData.creatorUrl = anyUser?.profileImage || '';
+     
      if(action === 'create'){
       createPost(newPostData);
      }
