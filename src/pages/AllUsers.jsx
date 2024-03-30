@@ -7,9 +7,8 @@ import UserCard from '../ui/UserCard';
 
 const AllUsers = () => {
   const {users, isLoading} = useUsers();
-  const {user} = useUser();
-  const {username: currentUsername} = user.user_metadata;
-  const filteredUsers = users?.filter((user)=>user.username !== currentUsername);
+  const {user: currentUser} = useUser();
+  const filteredUsers = users?.filter((user)=>user.id !== currentUser?.id);
 
   return (
      <div className="common-container">

@@ -21,7 +21,7 @@ import AllUsers from "./pages/AllUsers";
 import UpdateProfile from "./pages/UpdateProfile";
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 600000 } },
+  defaultOptions: { queries: { staleTime: 0 } },
 });
 
 const App = () => {

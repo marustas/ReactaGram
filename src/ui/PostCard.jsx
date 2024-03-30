@@ -9,7 +9,7 @@ import PostStats from './PostStats';
 
 const PostCard = ({post}) => {
     const {user} = useUser();
-    const {username : currentUser} = user.user_metadata;
+    const {username : currentUser} = user?.user_metadata;
     const tags = formatTags(post.tags);
     const {user: anyUser} = useAnyUser(post.creatorID);
 

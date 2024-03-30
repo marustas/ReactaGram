@@ -11,13 +11,13 @@ const ProfileForm = ({profile}) => {
     const {isUpdatingUser, updateUser} = useUpdateUser();
     
     function onSubmit({username, name, bio }){
+
       const newUser = {name: name,
         username: username,
         bio: bio, 
         profileImageFile: profileImage,
         profileImage: '',
         id: profile.id};
-
       updateUser(newUser);
     }
 

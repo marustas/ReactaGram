@@ -29,8 +29,8 @@ const LeftBar = () => {
         <Link to={`/profile/${user.id}`} className='items-center flex gap-3'>
           <img className='h-14 w-14 rounded-full' alt = "profile" src = {anyUser?.profileImage || "../assets/icons/profile-placeholder.svg"}/>
           <div className='flex flex-col'>
-          <p className='body-bold'>{name}</p>
-          <p className='small-regular text-light-3'>@{username}</p>
+          <p className='body-bold'>{anyUser?.name}</p>
+          <p className='small-regular text-light-3'>@{anyUser?.username}</p>
         </div>
         </Link>
         

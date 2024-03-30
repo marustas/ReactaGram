@@ -7,8 +7,8 @@ import { useAnyUser } from '../hooks/useAnyUser';
 const TopBar = () => {
   const {isSigningOut, signOut} = useSignOut();
   const {user} = useUser();
-  const {username} = user.user_metadata;
-  const {user: anyUser} = useAnyUser(user.id);
+  const {username} = user?.user_metadata;
+  const {user: anyUser} = useAnyUser(user?.id);
 
   return (
     <section className='topbar'>
@@ -20,7 +20,7 @@ const TopBar = () => {
               <button disabled={isSigningOut} onClick={signOut} className='w-7 py-2 shad-button_ghost'>
                 <img height={325} width={130} alt = "logout" src = "../assets/icons/logout.svg"/>
               </button>
-              <Link className='flex-center gap-3' to ={`/profile/${user.id}`}>
+              <Link className='flex-center gap-3' to ={`/profile/${user?.id}`}>
                 <img className='h-8 w-8 rounded-full' alt={username} src = {anyUser?.profileImage || "../assets/icons/profile-placeholder.svg"}/>
               </Link>
             </div>

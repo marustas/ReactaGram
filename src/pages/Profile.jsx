@@ -37,7 +37,7 @@ const Profile = () => {
               </p>
             </div>
             <div className='flex gap-8 mt-10 items-center justify-center xl:justify-start flex-wrap z-20'>
-              <StatBlock value={filteredPosts.length} label={ filteredPosts.length > 1 ? 'Posts' : 'Post'}/>
+              <StatBlock value={filteredPosts?.length} label={ filteredPosts?.length > 1 ? 'Posts' : 'Post'}/>
             </div>
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
               {user?.bio ? user.bio : 'No bio'}

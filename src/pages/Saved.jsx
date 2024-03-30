@@ -12,7 +12,7 @@ const Saved = () => {
 
   if(isPostLoading) return <Loader/>;
 
-  const filteredPosts = posts.filter((post)=>post.saved.includes(user.id));
+  const filteredPosts = posts?.filter((post)=>post.saved.includes(user.id));
 
     return (
     <div className='saved-container'>
