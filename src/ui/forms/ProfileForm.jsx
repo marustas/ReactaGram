@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import FileUploader from '../FileUploader';
 import { useForm } from 'react-hook-form';
 import { useUpdateUser } from '../../hooks/useUpdateUser';
+import { createUserObject } from '../../services/utils';
 
 const ProfileForm = ({profile}) => {
     const navigate = useNavigate();
@@ -11,13 +12,7 @@ const ProfileForm = ({profile}) => {
     const {isUpdatingUser, updateUser} = useUpdateUser();
     
     function onSubmit({username, name, bio }){
-
-      const newUser = {name: name,
-        username: username,
-        bio: bio, 
-        profileImageFile: profileImage,
-        profileImage: '',
-        id: profile.id};
+      const newUser = createUserObject(name,username,bio,profileImage, profile.id);
       updateUser(newUser);
     }
 

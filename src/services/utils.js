@@ -23,6 +23,18 @@ export function formatTags(inputString) {
     return separatedArray;
 }
 
+export const createUserObject = (name, username, bio, profileImage, id) => {
+    if (!name || !username || !bio) return null;
+
+    return {
+        name: name,
+        username: username,
+        bio: bio,
+        profileImageFile: profileImage,
+        profileImage: '',
+        id: id
+    }
+}
 export const createPostObject = (caption, tags, location, username, image, userID, action) => {
     if (action === 'create') {
         if (!caption || !tags || !location || !username || !image || !userID) return null;
