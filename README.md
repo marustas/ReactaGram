@@ -1,9 +1,21 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # ReactaGram
+
+A social media web application built using modern web technologies.
+
+## Technologies Used
+
+- **Frontend**:
+  - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+  - [react-router-dom](https://reactrouter.com/): Declarative routing for React.
+  - [react-query](https://react-query.tanstack.com/): A data fetching library for React.
+  - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly building custom designs.
+
+- **Backend**:
+  - [Supabase](https://supabase.io/): An open-source alternative to Firebase, offering realtime GraphQL subscriptions and a powerful API.
+
+## Features
+
+- [ ] User authentication and editing
+- [ ] News feed displaying posts from friends
+- [ ] Post creation, liking, saving and editing
+- [ ] Real-time updates using Supabase subscriptions
